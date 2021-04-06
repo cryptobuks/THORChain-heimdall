@@ -1,5 +1,5 @@
 include Makefile.cicd
-IMAGE_NAME = registry.gitlab.com/thorchain/heimdall
+IMAGE_NAME?=registry.gitlab.com/thorchain/heimdall
 LOGLEVEL?=INFO
 RUNE?=THOR.RUNE
 DOCKER_OPTS = --network=host --rm -e RUNE=${RUNE} -e LOGLEVEL=${LOGLEVEL} -e PYTHONPATH=/app -v ${PWD}:/app -w /app
@@ -8,7 +8,8 @@ clean:
 	rm *.pyc
 
 build:
-	@docker build -t ${IMAGE_NAME} .
+	@docker pull ${IMAGE_NAME} || true
+	@docker build --cache-from ${IMAGE_NAME} -t ${IMAGE_NAME} .
 
 lint:
 	@docker run --rm -v ${PWD}:/app pipelinecomponents/flake8:latest flake8
@@ -49,8 +50,11 @@ kube-benchmark-swap:
 health:
 	@docker run ${DOCKER_OPTS} ${IMAGE_NAME} python scripts/health.py
 
-health-chaosnet:
-	@docker run ${DOCKER_OPTS} ${IMAGE_NAME} python scripts/health.py --binance-api=https://dex.binance.org --thorchain=http://18.159.165.210:1317 --midgard=http://18.159.165.210:8080 --margin-err=0.1
+health-mainnet:
+	@docker run ${DOCKER_OPTS} ${IMAGE_NAME} python scripts/health.py --binance-api=https://dex.binance.org --thorchain=http://18.158.11.151:1317 --midgard=http://18.158.11.151:8080 --margin-err=0.1
+
+health-testnet:
+	@docker run ${DOCKER_OPTS} ${IMAGE_NAME} python scripts/health.py --binance-api=https://testnet-dex.binance.org --thorchain=https://testnet.thornode.thorchain.info --midgard=https://testnet.midgard.thorchain.info --margin-err=0.001
 
 bitcoin-reorg:
 	@docker run ${DOCKER_OPTS} ${IMAGE_NAME} python scripts/smoke.py --fast-fail=True --bitcoin-reorg=True

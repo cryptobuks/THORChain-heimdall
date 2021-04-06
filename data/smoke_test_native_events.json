@@ -430,7 +430,7 @@
         "type": "rewards",
         "attributes": [
             {
-                "bond_reward": "1"
+                "bond_reward": "2"
             }
         ]
     },
@@ -594,7 +594,7 @@
                 "code": "105"
             },
             {
-                "reason": "invalid pool asset: unknown request"
+                "reason": "asset cannot be rune: unknown request"
             },
             {
                 "id": "TODO"
@@ -634,7 +634,7 @@
         "type": "rewards",
         "attributes": [
             {
-                "bond_reward": "2"
+                "bond_reward": "3"
             }
         ]
     },
@@ -905,7 +905,7 @@
         "type": "rewards",
         "attributes": [
             {
-                "bond_reward": "4"
+                "bond_reward": "5"
             }
         ]
     },
@@ -973,10 +973,10 @@
                 "pool": "BNB.BNB"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "7350"
+                "swap_slip": "7350"
             },
             {
                 "liquidity_fee": "45855753911"
@@ -1014,10 +1014,10 @@
                 "pool": "BTC.BTC"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "2485"
+                "swap_slip": "2485"
             },
             {
                 "liquidity_fee": "9264509"
@@ -1086,10 +1086,10 @@
                 "pool": "BTC.BTC"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "121"
+                "swap_slip": "121"
             },
             {
                 "liquidity_fee": "9813887"
@@ -1167,10 +1167,10 @@
                 "pool": "BNB.BNB"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "4236"
+                "swap_slip": "4236"
             },
             {
                 "liquidity_fee": "12266469336"
@@ -1208,10 +1208,10 @@
                 "pool": "BCH.BCH"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "2503"
+                "swap_slip": "2503"
             },
             {
                 "liquidity_fee": "9394486"
@@ -1306,10 +1306,10 @@
                 "pool": "BNB.BNB"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "2976"
+                "swap_slip": "2976"
             },
             {
                 "liquidity_fee": "4574640899"
@@ -1347,10 +1347,10 @@
                 "pool": "LTC.LTC"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "1776"
+                "swap_slip": "1776"
             },
             {
                 "liquidity_fee": "4732151"
@@ -1419,10 +1419,10 @@
                 "pool": "LTC.LTC"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "116"
+                "swap_slip": "116"
             },
             {
                 "liquidity_fee": "8143032"
@@ -1474,10 +1474,10 @@
                 "pool": "ETH.ETH"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "5000"
+                "swap_slip": "5000"
             },
             {
                 "liquidity_fee": "10000000"
@@ -1515,10 +1515,10 @@
                 "asset": "ETH.ETH"
             },
             {
-                "asset_amt": "35585"
+                "asset_amt": "35569"
             },
             {
-                "rune_amt": "117084608"
+                "rune_amt": "117031964"
             },
             {
                 "transaction_count": "1"
@@ -1546,19 +1546,19 @@
                 "pool": "ETH.ETH"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "3322"
+                "swap_slip": "3322"
             },
             {
-                "liquidity_fee": "10974008499"
+                "liquidity_fee": "10973994915"
             },
             {
-                "liquidity_fee_in_rune": "10974008499"
+                "liquidity_fee_in_rune": "10973994915"
             },
             {
-                "emit_asset": "22064645103 THOR.RUNE"
+                "emit_asset": "22064629496 THOR.RUNE"
             },
             {
                 "id": "TODO"
@@ -1587,10 +1587,10 @@
                 "tx_id": "TODO"
             },
             {
-                "coins": "1002680 ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A"
+                "coins": "1002679 ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A"
             },
             {
-                "pool_deduct": "334226555"
+                "pool_deduct": "334226277"
             }
         ]
     },
@@ -1601,10 +1601,10 @@
                 "pool": "ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "5000"
+                "swap_slip": "5000"
             },
             {
                 "liquidity_fee": "100000000"
@@ -1642,10 +1642,10 @@
                 "asset": "ETH.ETH"
             },
             {
-                "asset_amt": "53741"
+                "asset_amt": "53576"
             },
             {
-                "rune_amt": "92111125"
+                "rune_amt": "91828241"
             },
             {
                 "transaction_count": "1"
@@ -1673,10 +1673,10 @@
                 "pool": "BCH.BCH"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "122"
+                "swap_slip": "122"
             },
             {
                 "liquidity_fee": "9857465"
@@ -1728,19 +1728,19 @@
                 "pool": "ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "475"
+                "swap_slip": "475"
             },
             {
-                "liquidity_fee": "224567563"
+                "liquidity_fee": "224567565"
             },
             {
-                "liquidity_fee_in_rune": "224567563"
+                "liquidity_fee_in_rune": "224567565"
             },
             {
-                "emit_asset": "4506362571 THOR.RUNE"
+                "emit_asset": "4506362597 THOR.RUNE"
             },
             {
                 "id": "TODO"
@@ -1772,7 +1772,7 @@
                 "coins": "195000 ETH.ETH"
             },
             {
-                "pool_deduct": "335022978"
+                "pool_deduct": "335020258"
             }
         ]
     },
@@ -1806,10 +1806,10 @@
                 "asymmetry": "0.000000000000000000"
             },
             {
-                "emit_asset": "4510567"
+                "emit_asset": "4510586"
             },
             {
-                "emit_rune": "7749455063"
+                "emit_rune": "7749423071"
             },
             {
                 "imp_loss_protection": "0"
@@ -1841,10 +1841,10 @@
                 "asset": "ETH.ETH"
             },
             {
-                "asset_amt": "35597"
+                "asset_amt": "35581"
             },
             {
-                "rune_amt": "60573275"
+                "rune_amt": "60545559"
             },
             {
                 "transaction_count": "1"
@@ -1858,10 +1858,10 @@
                 "tx_id": "TODO"
             },
             {
-                "coins": "1103823 ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A"
+                "coins": "1103813 ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A"
             },
             {
-                "pool_deduct": "332399431"
+                "pool_deduct": "332396482"
             }
         ]
     },
@@ -1898,7 +1898,7 @@
                 "emit_asset": "31600268"
             },
             {
-                "emit_rune": "9515941087"
+                "emit_rune": "9515941113"
             },
             {
                 "imp_loss_protection": "0"
@@ -1930,10 +1930,10 @@
                 "asset": "ETH.ETH"
             },
             {
-                "asset_amt": "53753"
+                "asset_amt": "53588"
             },
             {
-                "rune_amt": "91628034"
+                "rune_amt": "91345962"
             },
             {
                 "transaction_count": "1"
@@ -2021,10 +2021,10 @@
                 "pool": "BNB.BNB"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "24"
+                "swap_slip": "24"
             },
             {
                 "liquidity_fee": "10014"
@@ -2093,10 +2093,10 @@
                 "pool": "BNB.BNB"
             },
             {
-                "price_target": "26572599"
+                "swap_target": "26572599"
             },
             {
-                "trade_slip": "1962"
+                "swap_slip": "1962"
             },
             {
                 "liquidity_fee": "64547274"
@@ -2165,10 +2165,10 @@
                 "pool": "BNB.BNB"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "1640"
+                "swap_slip": "1640"
             },
             {
                 "liquidity_fee": "37998750"
@@ -2504,10 +2504,10 @@
                 "pool": "BNB.BNB"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "81"
+                "swap_slip": "81"
             },
             {
                 "liquidity_fee": "4039060"
@@ -2559,10 +2559,10 @@
                 "pool": "BNB.BNB"
             },
             {
-                "price_target": "23853375"
+                "swap_target": "23853375"
             },
             {
-                "trade_slip": "1419"
+                "swap_slip": "1419"
             },
             {
                 "liquidity_fee": "24742378"
@@ -2631,10 +2631,10 @@
                 "pool": "BNB.BNB"
             },
             {
-                "price_target": "22460886"
+                "swap_target": "22460886"
             },
             {
-                "trade_slip": "1243"
+                "swap_slip": "1243"
             },
             {
                 "liquidity_fee": "16667066"
@@ -2763,10 +2763,10 @@
                 "pool": "BNB.LOK-3C0"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "1111"
+                "swap_slip": "1111"
             },
             {
                 "liquidity_fee": "617283950"
@@ -2818,10 +2818,10 @@
                 "pool": "BNB.LOK-3C0"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "999"
+                "swap_slip": "999"
             },
             {
                 "liquidity_fee": "448890943"
@@ -2916,10 +2916,10 @@
                 "pool": "BNB.LOK-3C0"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "1088"
+                "swap_slip": "1088"
             },
             {
                 "liquidity_fee": "592330021"
@@ -2957,10 +2957,10 @@
                 "pool": "BNB.BNB"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "569"
+                "swap_slip": "569"
             },
             {
                 "liquidity_fee": "3112048"
@@ -3055,10 +3055,10 @@
                 "pool": "BNB.BNB"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "55"
+                "swap_slip": "55"
             },
             {
                 "liquidity_fee": "2546331"
@@ -3096,10 +3096,10 @@
                 "pool": "BNB.LOK-3C0"
             },
             {
-                "price_target": "0"
+                "swap_target": "0"
             },
             {
-                "trade_slip": "102"
+                "swap_slip": "102"
             },
             {
                 "liquidity_fee": "4735269"
@@ -3452,10 +3452,10 @@
                 "asymmetry": "0.000000000000000000"
             },
             {
-                "emit_asset": "285506235"
+                "emit_asset": "285506224"
             },
             {
-                "emit_rune": "85311070356"
+                "emit_rune": "85311073531"
             },
             {
                 "imp_loss_protection": "0"
@@ -3487,10 +3487,10 @@
                 "asset": "ETH.ETH"
             },
             {
-                "asset_amt": "26877"
+                "asset_amt": "26794"
             },
             {
-                "rune_amt": "45935884"
+                "rune_amt": "45793249"
             },
             {
                 "transaction_count": "1"
@@ -3538,10 +3538,10 @@
                 "asymmetry": "0.000000000000000000"
             },
             {
-                "emit_asset": "40576380"
+                "emit_asset": "40576806"
             },
             {
-                "emit_rune": "69608209782"
+                "emit_rune": "69607472150"
             },
             {
                 "imp_loss_protection": "0"
@@ -3573,7 +3573,7 @@
                 "asset": "ETH.ETH"
             },
             {
-                "asset_amt": "35609"
+                "asset_amt": "35593"
             },
             {
                 "rune_amt": "0"
