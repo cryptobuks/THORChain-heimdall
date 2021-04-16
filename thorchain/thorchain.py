@@ -784,7 +784,31 @@ class ThorchainState:
         # liquidity provision cross chain so event will be dispatched on asset
         # liquidity provision
         if liquidity_units == 0:
+            # generate event for liquidity provision transaction
+            event = Event(
+                "add_liquidity",
+                [
+                    {"pool": pool.asset},
+                    {"liquidity_provider_units": liquidity_units},
+                    {"rune_address": rune_address or ""},
+                    {"rune_amount": rune_amt},
+                    {"asset_amount": asset_amt},
+                    {"asset_address": asset_address or ""},
+                    {f"{tx.chain}_txid": tx.id},
+                ],
+            )
+            if pending_txid:
+                if tx.chain == RUNE.get_chain():
+                    event.attributes.append(
+                        {f"{pool.asset.get_chain()}_txid": pending_txid or ""}
+                    )
+                else:
+                    event.attributes.append(
+                        {f"{RUNE.get_chain()}_txid": pending_txid or ""}
+                    )
+            self.events.append(event)
             return []
+
         if pool.total_units > 0 and len(pool.liquidity_providers) == 1:
             self.events.append(
                 Event("pool", [{"pool": pool.asset}, {"pool_status": "Available"}])
