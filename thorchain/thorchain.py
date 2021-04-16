@@ -797,15 +797,14 @@ class ThorchainState:
                     {f"{tx.chain}_txid": tx.id},
                 ],
             )
-            if pending_txid:
-                if tx.chain == RUNE.get_chain():
-                    event.attributes.append(
-                        {f"{pool.asset.get_chain()}_txid": pending_txid or "0000000000000000000000000000000000000000000000000000000000000000"}
-                    )
-                else:
-                    event.attributes.append(
-                        {f"{RUNE.get_chain()}_txid": pending_txid or "0000000000000000000000000000000000000000000000000000000000000000"}
-                    )
+            if tx.chain == RUNE.get_chain():
+                event.attributes.append(
+                    {f"{pool.asset.get_chain()}_txid": pending_txid or "0000000000000000000000000000000000000000000000000000000000000000"}
+                )
+            else:
+                event.attributes.append(
+                    {f"{RUNE.get_chain()}_txid": pending_txid or "0000000000000000000000000000000000000000000000000000000000000000"}
+                )
             self.events.append(event)
             return []
 
