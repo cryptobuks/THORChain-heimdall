@@ -755,13 +755,13 @@ class ThorchainState:
 
         pool = self.get_pool(asset)
 
-        rune_amt = 0
-        asset_amt = 0
+        orig_rune_amt = 0
+        orig_asset_amt = 0
         for coin in tx.coins:
             if coin.is_rune():
-                rune_amt = coin.amount
+                orig_rune_amt = coin.amount
             else:
-                asset_amt = coin.amount
+                orig_asset_amt = coin.amount
 
         # check address to provider to from memo
         if tx.chain == RUNE.get_chain():
@@ -777,7 +777,7 @@ class ThorchainState:
                 asset_address = parts[2]
 
         liquidity_units, rune_amt, asset_amt, pending_txid = pool.add_liquidity(
-            rune_address, asset_address, rune_amt, asset_amt, asset, tx.id
+            rune_address, asset_address, orig_rune_amt, orig_asset_amt, asset, tx.id
         )
         self.set_pool(pool)
 
@@ -791,8 +791,8 @@ class ThorchainState:
                     {"pool": pool.asset},
                     {"liquidity_provider_units": liquidity_units},
                     {"rune_address": rune_address or ""},
-                    {"rune_amount": rune_amt},
-                    {"asset_amount": asset_amt},
+                    {"rune_amount": orig_rune_amt},
+                    {"asset_amount": orig_asset_amt},
                     {"asset_address": asset_address or ""},
                     {f"{tx.chain}_txid": tx.id},
                 ],
