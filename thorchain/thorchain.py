@@ -831,7 +831,7 @@ class ThorchainState:
         if asset_address is not None and not lp.asset_address == asset_address:
             return self.refund(
                 tx,
-                123,
+                100,
                 "mismatch of asset address",
             )
 

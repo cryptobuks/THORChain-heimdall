@@ -2046,7 +2046,7 @@
         "type": "refund",
         "attributes": [
             {
-                "code": "123"
+                "code": "100"
             },
             {
                 "reason": "mismatch of asset address"
@@ -2109,7 +2109,7 @@
         "type": "refund",
         "attributes": [
             {
-                "code": "123"
+                "code": "100"
             },
             {
                 "reason": "mismatch of asset address"
