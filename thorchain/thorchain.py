@@ -433,8 +433,9 @@ class ThorchainState:
                             asset_fee = pool.get_rune_in_asset(rune_fee)
                         if coin.amount <= asset_fee:
                             asset_fee = coin.amount
-                            rune_fee = pool.get_asset_in_rune_with_slip(asset_fee)
 
+                        rune_fee = pool.get_asset_in_rune_with_slip(asset_fee)
+                        
                         if pool.rune_balance >= rune_fee:
                             pool.sub(rune_fee, 0)
                         if coin.asset.is_synth:
