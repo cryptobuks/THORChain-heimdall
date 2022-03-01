@@ -1159,6 +1159,7 @@ class ThorchainState:
 
         # refund if we're trying to swap with the coin we given ie
         # swapping bnb with bnb
+        logging.info("Swap Source {source} == Target {target}")
         if source == target:
             reason = "swap Source and Target cannot be the same.: unknown request"
             return self.refund(tx, 105, reason)
