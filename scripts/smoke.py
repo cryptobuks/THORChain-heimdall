@@ -439,6 +439,7 @@ class Smoker:
 
             new_events = events[-count_events:] if count_events > 0 else []
             for evt_t in new_events:
+                logging.info(f"New event: {evt_t}")
 
                 # we have more real events than sim, fill in the gaps
                 if evt_t.type == "gas":
