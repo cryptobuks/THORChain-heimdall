@@ -629,6 +629,7 @@ class ThorchainState:
         """
         Returns a list of refund transactions based on given tx
         """
+        logging.info(f"REFUND: {code}: {reason}")
         out_txs = []
         for coin in tx.coins:
             # check we have gas liquidity
