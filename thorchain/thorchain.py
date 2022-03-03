@@ -629,7 +629,6 @@ class ThorchainState:
         """
         Returns a list of refund transactions based on given tx
         """
-        logging.info(f"REFUND: {code}: {reason}")
         out_txs = []
         for coin in tx.coins:
             # check we have gas liquidity
@@ -1160,8 +1159,7 @@ class ThorchainState:
 
         # refund if we're trying to swap with the coin we given ie
         # swapping bnb with bnb
-        logging.info(f"Swap Source {source} == Target {target}")
-        if source == target:
+        if source == target and source.is_synth == target.is_synth:
             reason = "swap Source and Target cannot be the same.: unknown request"
             return self.refund(tx, 105, reason)
 
