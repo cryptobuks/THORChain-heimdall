@@ -1,4 +1,3 @@
-import logging
 from utils.common import Asset
 
 
@@ -22,7 +21,6 @@ class Account:
                 if coin.asset == c.asset:
                     self.balances[i].amount -= coin.amount
                     if self.balances[i].amount < 0:
-                        logging.info(f"Balance: {self.address} {self.balances[i]}")
                         self.balances[i].amount = 0
                         # raise Exception("insufficient funds")
 

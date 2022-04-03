@@ -134,7 +134,16 @@ class Health:
         self.thorchain_pools = self.thorchain_client.get_pools()
         for tpool in self.thorchain_pools:
             asset = tpool["asset"]
-            mpool = self.midgard_client.get_pool(asset)
+            if asset.split(".")[0] == "THOR":
+                continue
+
+            try:
+                mpool = self.midgard_client.get_pool(asset)
+            except Exception as e:
+                if int(tpool["LP_units"]) > 0:
+                    self.error(f"Midgard Error: {e}")
+                else:
+                    continue
 
             # Thorchain Coins
             trune = Coin(RUNE, tpool["balance_rune"])

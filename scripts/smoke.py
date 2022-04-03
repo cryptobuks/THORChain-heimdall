@@ -240,6 +240,8 @@ class Smoker:
         # compare simulation pools vs real pools
         real_pools = self.thorchain_client.get_pools()
         for rpool in real_pools:
+            if rpool["asset"].split(".")[0] == "THOR":
+                continue
             spool = self.thorchain_state.get_pool(Asset(rpool["asset"]))
             if int(spool.rune_balance) != int(rpool["balance_rune"]):
                 self.error(

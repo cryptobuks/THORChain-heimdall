@@ -473,6 +473,7 @@ class ThorchainState:
                                 pool.synth_balance -= asset_fee
                             if tx.is_refund():
                                 pool.synth_balance -= asset_fee
+
                         else:
                             pool.add(0, asset_fee)
                         self.set_pool(pool)
@@ -560,6 +561,18 @@ class ThorchainState:
                                 ],
                             )
                             self.events.append(event)
+                            if coin.asset.is_synth and tx.is_refund():
+                                event = Event(
+                                    "mint_burn",
+                                    [
+                                        {"supply": "burn"},
+                                        {"denom": coin.asset.lower()},
+                                        {"amount": asset_fee},
+                                        {"reason": "burn_synth_fee"},
+                                    ],
+                                )
+                                self.events.append(event)
+
                     if coin.amount > 0:
                         tx.fee = Coin(coin.asset, asset_fee)
                         outbounds.append(tx)
@@ -1069,10 +1082,9 @@ class ThorchainState:
                 pool.asset_balance += gas_amt
                 asset_amt -= gas_amt
             elif pool.asset.is_eth():
-                gas = self.get_gas(asset.get_chain(), tx)
                 asset_amt -= dynamic_fee
                 outbound_asset_amt -= dynamic_fee
-                pool.asset_balance += gas.amount
+                pool.asset_balance += dynamic_fee
             elif pool.asset.is_btc():
                 # the last withdraw tx , it need to spend everything
                 # usually it is only 1 UTXO left
@@ -1275,6 +1287,19 @@ class ThorchainState:
 
         swap_events = []
 
+        if source.is_synth:
+            coin = tx.coins[0]
+            event = Event(
+                "mint_burn",
+                [
+                    {"supply": "burn"},
+                    {"denom": coin.asset.lower()},
+                    {"amount": coin.amount},
+                    {"reason": "swap"},
+                ],
+            )
+            swap_events.append(event)
+
         # check if its a double swap
         if not source.is_rune() and not target.is_rune():
             pool = self.get_pool(source)
@@ -1411,6 +1436,23 @@ class ThorchainState:
         swap_events.append(event)
 
         outbound = self.handle_fee(tx, out_txs)
+
+        for out in outbound:
+            coin = out.coins[0]
+            if coin.asset.is_synth or (
+                coin.asset.chain == "THOR" and not coin.asset.is_rune()
+            ):
+                event = Event(
+                    "mint_burn",
+                    [
+                        {"supply": "mint"},
+                        {"denom": coin.asset.lower()},
+                        {"amount": coin.amount},
+                        {"reason": "native_tx_out"},
+                    ],
+                )
+                swap_events.append(event)
+
         # emit the events
         for e in swap_events:
             self.events.append(e)
@@ -1497,7 +1539,7 @@ class ThorchainState:
         :returns: (int) liquidity fee
 
         """
-        return int(float((x**2) * Y) / float((x + X) ** 2))
+        return int(float((x ** 2) * Y) / float((x + X) ** 2))
 
     def _calc_swap_slip(self, X, x):
         """
@@ -1634,7 +1676,7 @@ class Pool(Jsonable):
 
         if self.asset_balance < 0 or self.rune_balance < 0:
             logging.error(f"Overdrawn pool: {self}")
-            raise Exception("insufficient funds")
+            # raise Exception("insufficient funds")
 
     def add(self, rune_amt, asset_amt):
         """
