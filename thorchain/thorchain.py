@@ -1013,16 +1013,20 @@ class ThorchainState:
         gas = self.get_gas(chain, tx)
         # get the fee that are supposed to be charged, this will only be
         # used if it is the last withdraw
+        withdraw_units, rune_amt, asset_amt = pool.withdraw(
+            tx.from_address, withdraw_basis_points
+        )
         if asset == self.get_gas_asset(chain):
             dynamic_fee = int(round(self.get_asset_fee(chain) / 2))
+            if asset_amt < dynamic_fee:
+                return self.refund(tx, 105, "refund reason message")
         else:
             dynamic_fee = int(
                 round(pool.get_rune_in_asset(self.get_rune_fee(chain)) / 2)
             )
+            if rune_amt < dynamic_fee:
+                return self.refund(tx, 105, "refund reason message")
         tx_rune_gas = self.get_gas(RUNE.get_chain(), tx)
-        withdraw_units, rune_amt, asset_amt = pool.withdraw(
-            tx.from_address, withdraw_basis_points
-        )
         rune_amt += lp.pending_rune
 
         # if this is our last liquidity provider of bnb, subtract a little BNB for gas.
