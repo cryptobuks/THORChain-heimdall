@@ -354,6 +354,14 @@ class Smoker:
                     logging.error(">>>>>>>>>>>>>>> MISMATCH!")
                 logging.error(f"Evt THO  {evt_t}")
                 logging.error(f"Evt SIM  {evt_s}")
+            if len(events) > len(sim_events):
+                logging.error(">>>>>>>>>>>>>>> MISMATCH!")
+                for e in events[len(sim_events):]:
+                    logging.error(f"Evt THO  {evt_t}")
+            elif len(sim_events) > len(events):
+                logging.error(">>>>>>>>>>>>>>> MISMATCH!")
+                for e in sim_events[len(events):]:
+                    logging.error(f"Evt SIM  {evt_t}")
             self.error("Events mismatch")
 
     @retry(stop=stop_after_delay(30), wait=wait_fixed(0.3), reraise=True)
