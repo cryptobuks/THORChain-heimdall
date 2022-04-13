@@ -1027,9 +1027,9 @@ class ThorchainState:
         )
 
         print(f"AKH {rune_amt} {tx_rune_gas} {asset_amt} {gas}")
-        if rune_amt > 0 && rune_amt < tx_rune_gas:
+        if rune_amt > 0 and rune_amt < tx_rune_gas.amount:
             return self.refund(tx, 105, "refund reason message")
-        if asset_amt > 0 && asset_amt < gas:
+        if asset_amt > 0 and asset_amt < gas.amount:
             return self.refund(tx, 105, "refund reason message")
 
         rune_amt += lp.pending_rune
