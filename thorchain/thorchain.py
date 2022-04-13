@@ -1023,6 +1023,13 @@ class ThorchainState:
         withdraw_units, rune_amt, asset_amt = pool.withdraw(
             tx.from_address, withdraw_basis_points
         )
+
+        print(f"AKH {rune_amt} {tx_rune_gas} {asset_amt} {gas}")
+        if rune_amt > 0 && rune_amt < tx_rune_gas:
+            return self.refund(tx, 105, "refund reason message")
+        if asset_amt > 0 && asset_amt < gas:
+            return self.refund(tx, 105, "refund reason message")
+
         rune_amt += lp.pending_rune
 
         # if this is our last liquidity provider of bnb, subtract a little BNB for gas.
