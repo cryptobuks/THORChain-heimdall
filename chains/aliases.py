@@ -61,6 +61,13 @@ aliases_eth = {
     "VAULT": "",
 }
 
+aliases_xhv = {
+    "MASTER": "hvxy6ABzHQFbfQNrDj6kbDUbk79eaEpbpTLxPjZPZcLLVnBX7KGAiep4cgPMp1hUtHAWrnAFq1o26Q8qvDf6cbmc7jtFNfXHMg",
+    "USER-1": "hvxyGJayXy1cQXfsTYGjV5Di2KeFFvKTiCDGiyVoZ4JkdEFDuuigU6GXbwTAgQd2wKi3y7LdvJ7BzdgdGZK6eGaU1JQb1WU6pY",
+    "PROVIDER-1": "hvxyCdjDj9fi8829f4RtMKHDqGVpmHWDwcSUoYZfGzbP9KHEFmHEjruEnshfoUFhbG72WAFERNNRijCdDtsC5duq6yqGc6wPG9",
+    "VAULT": "",
+}
+
 aliases_thor = {
     "MASTER": "tthor1nrsk6f4kalwwrqqyrfmxzl96hyjhe96t4gmvp2",
     "CONTRIB": "tthor1m8prd4pvqe5p3cu7tu82pn50a5f9xzxzetc35t",
@@ -109,6 +116,8 @@ def get_alias_address(chain, alias):
         return aliases_doge[alias]
     if chain == "ETH":
         return aliases_eth[alias]
+    if chain == "XHV":
+        return aliases_xhv[alias]
     if chain == "THOR":
         return aliases_thor[alias]
     raise Exception(f"Address for alias not found, chain not supported ({chain})")
@@ -129,6 +138,8 @@ def get_alias(chain, addr):
         aliases = aliases_doge
     if chain == "ETH":
         aliases = aliases_eth
+    if chain == "XHV":
+        aliases = aliases_xhv
     if chain == "THOR":
         aliases = aliases_thor
     for name, alias_addr in aliases.items():

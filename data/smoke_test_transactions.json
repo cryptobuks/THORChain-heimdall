@@ -171,6 +171,19 @@
         "gas": null
     },
     {
+        "chain": "XHV",
+        "from_address": "MASTER",
+        "to_address": "PROVIDER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "XHV.XHV",
+                "amount": 30000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
         "chain": "BTC",
         "from_address": "MASTER",
         "to_address": "PROVIDER-2",
@@ -314,6 +327,19 @@
         "gas": null
     },
     {
+        "chain": "XHV",
+        "from_address": "MASTER",
+        "to_address": "USER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "XHV.XHV",
+                "amount": 30000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
         "chain": "THOR",
         "from_address": "PROVIDER-1",
         "to_address": "VAULT",
@@ -431,6 +457,19 @@
         "gas": null
     },
     {
+        "chain": "XHV",
+        "from_address": "PROVIDER-1",
+        "to_address": "VAULT",
+        "memo": "ADD:XHV.XHV:PROVIDER-1",
+        "coins": [
+            {
+                "asset": "XHV.XHV",
+                "amount": 10000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
         "chain": "THOR",
         "from_address": "PROVIDER-1",
         "to_address": "VAULT",
@@ -452,6 +491,19 @@
             {
                 "asset": "THOR.RUNE",
                 "amount": 50000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "THOR",
+        "from_address": "PROVIDER-1",
+        "to_address": "VAULT",
+        "memo": "ADD:XHV.XHV:PROVIDER-1",
+        "coins": [
+            {
+                "asset": "THOR.RUNE",
+                "amount": 1000000000
             }
         ],
         "gas": null
@@ -509,6 +561,19 @@
         "gas": null
     },
     {
+        "chain": "XHV",
+        "from_address": "USER-1",
+        "to_address": "VAULT",
+        "memo": "SWAP:THOR.RUNE:USER-1",
+        "coins": [
+            {
+                "asset": "XHV.XHV",
+                "amount": 3000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
         "chain": "THOR",
         "from_address": "PROVIDER-1",
         "to_address": "VAULT",
@@ -556,6 +621,19 @@
             {
                 "asset": "BNB.BNB",
                 "amount": 100000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "THOR",
+        "from_address": "PROVIDER-1",
+        "to_address": "VAULT",
+        "memo": "WITHDRAW:XHV.XHV:1000",
+        "coins": [
+            {
+                "asset": "THOR.RUNE",
+                "amount": 1
             }
         ],
         "gas": null

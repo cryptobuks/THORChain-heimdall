@@ -15,6 +15,7 @@ from chains.litecoin import Litecoin, MockLitecoin
 from chains.bitcoin_cash import BitcoinCash, MockBitcoinCash
 from chains.dogecoin import Dogecoin, MockDogecoin
 from chains.ethereum import Ethereum, MockEthereum
+from chains.haven import Haven, MockHaven
 from chains.thorchain import Thorchain, MockThorchain
 from thorchain.thorchain import ThorchainState, ThorchainClient
 from scripts.health import Health
@@ -68,6 +69,11 @@ def main():
         help="Localnet ethereum server",
     )
     parser.add_argument(
+        "--haven",
+        default="http://localhost:17750",
+        help="Localnet haven daemon",
+    )
+    parser.add_argument(
         "--thorchain", default="http://localhost:1317", help="Thorchain API url"
     )
     parser.add_argument(
@@ -115,6 +121,7 @@ def main():
         args.litecoin,
         args.dogecoin,
         args.ethereum,
+        args.haven,
         args.thorchain,
         health,
         txns,
@@ -143,6 +150,7 @@ class Smoker:
         ltc,
         doge,
         eth,
+        xhv,
         thor,
         health,
         txns,
@@ -159,6 +167,7 @@ class Smoker:
         self.litecoin = Litecoin()
         self.dogecoin = Dogecoin()
         self.ethereum = Ethereum()
+        self.haven = Haven()
         self.thorchain = Thorchain()
         self.thorchain_state = ThorchainState()
 
@@ -202,6 +211,11 @@ class Smoker:
         self.mock_ethereum = MockEthereum(eth)
         ethereum_address = MockEthereum.get_address_from_pubkey(raw_pubkey)
         self.mock_ethereum.set_vault_address(ethereum_address)
+
+        # setup haven
+        self.mock_haven = MockHaven(xhv, thor)
+        haven_address = self.mock_haven.get_vault_address()
+        self.mock_haven.set_vault_address(haven_address)
 
         # setup binance
         self.mock_binance = MockBinance(bnb)
@@ -298,8 +312,8 @@ class Smoker:
             name = get_alias(chain.chain, addr)
             if name == "MASTER":
                 continue  # don't care to compare MASTER account
-            if name == "VAULT" and chain.chain == "THOR":
-                continue  # don't care about vault for thorchain
+            if name == "VAULT" and (chain.chain == "THOR" or chain.chain == "XHV"):
+                continue  # don't care about vault for thorchain and dont have access to  xhv vault wallet.
             mock_coin = Coin(chain.coin, mock.get_balance(addr))
             sim_coin = Coin(chain.coin, sim_acct.get(chain.coin))
             # dont raise error on reorg balance being invalidated
@@ -379,6 +393,8 @@ class Smoker:
             return self.mock_ethereum.transfer(txn)
         if txn.chain == Terra.chain:
             return self.mock_terra.transfer(txn)
+        if txn.chain == Haven.chain:
+            return self.mock_haven.transfer(txn)
         if txn.chain == MockThorchain.chain:
             return self.mock_thorchain.transfer(txn)
 
@@ -398,6 +414,8 @@ class Smoker:
             return self.litecoin.transfer(txn)
         if txn.chain == Dogecoin.chain:
             return self.dogecoin.transfer(txn)
+        if txn.chain == Haven.chain:
+            return self.haven.transfer(txn)
         if txn.chain == Ethereum.chain:
             tx_copy = deepcopy(txn)
             return self.ethereum.transfer(tx_copy)
@@ -438,6 +456,7 @@ class Smoker:
                 txn.coins[idx].amount = int(coin.amount / 1e10)
             for idx, c in enumerate(txn.gas):
                 txn.gas[idx].amount = int(c.amount / 1e10)
+        txn.id = txn.id.upper()
         outbounds = self.thorchain_state.handle(txn)
 
         for outbound in outbounds:
@@ -612,6 +631,7 @@ class Smoker:
             self.check_chain(self.bitcoin, self.mock_bitcoin, self.bitcoin_reorg)
             self.check_chain(self.litecoin, self.mock_litecoin, self.bitcoin_reorg)
             self.check_chain(self.dogecoin, self.mock_dogecoin, self.bitcoin_reorg)
+            self.check_chain(self.haven, self.mock_haven, self.bitcoin_reorg)
             self.check_chain(
                 self.bitcoin_cash, self.mock_bitcoin_cash, self.bitcoin_reorg
             )
