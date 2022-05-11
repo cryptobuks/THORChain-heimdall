@@ -12,7 +12,7 @@ from tenacity import retry, stop_after_delay, wait_fixed
 
 RUNE = get_rune_asset()
 HavenDecimalDiff = 10000 # difference in deciamll between haven and thor. 12 vs. 8. Used to convert amounst to each other.
-HavenDefaultFee = 350000000
+HavenDefaultFee = 314010000
 
 class MockHaven(HttpClient):
     """
@@ -207,10 +207,9 @@ class Haven(GenericChain):
     def _calculate_gas(cls, pool, txn):
         """
         Calculate gas according to RUNE thorchain fee
-        1 RUNE / 2 in BTC value
         """
         if pool is None:
-            return Coin(cls.coin, MockHaven.default_gas)
+            return Coin(cls.coin, HavenDefaultFee // HavenDecimalDiff)
 
-        btc_amount = pool.get_rune_in_asset(int(cls.rune_fee / 2))
-        return Coin(cls.coin, btc_amount)
+        xhv_amount = pool.get_rune_in_asset(int(cls.rune_fee / 2))
+        return Coin(cls.coin, xhv_amount)

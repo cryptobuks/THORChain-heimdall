@@ -163,6 +163,12 @@ class Asset(str, Jsonable):
         """
         return self.get_symbol().startswith("ETH")
 
+    def is_xhv(self):
+        """
+        Is this asset xhv?
+        """
+        return self.get_symbol().startswith("XHV")
+
     def is_luna(self):
         """
         Is this asset luna?

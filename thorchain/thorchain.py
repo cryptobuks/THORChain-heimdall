@@ -391,7 +391,7 @@ class ThorchainState:
             amount = int(self.terra_tx_rate * 3 / 2) * self.terra_estimate_size
             amount = int(amount / 100) * 100  # round TERRA to 6 digits max
         if chain == "XHV":
-            amount = 2 * HavenDefaultFee
+            amount = HavenDefaultFee // HavenDecimalDiff
         if chain == "BNB":
             amount = pool.get_rune_in_asset(int(rune_fee / 3))
         return Coin(gas_asset, amount)
@@ -522,6 +522,12 @@ class ThorchainState:
                                 coin.amount += gap
                             else:
                                 tx.gas = tx.max_gas
+                        
+                        if coin.asset.is_xhv() and not asset_fee == 0:
+                            tx.max_gas = [Coin(coin.asset, int(asset_fee / 2))]
+                            tx.gas = [Coin(coin.asset, int(HavenDefaultFee // HavenDecimalDiff))]
+                            # convert the haven fee back to origignal amount
+                            asset_fee *= HavenDecimalDiff
 
                         if coin.asset.is_terra() and not asset_fee == 0:
                             asset_fee = int(asset_fee / 100) * 100
@@ -1144,6 +1150,15 @@ class ThorchainState:
                     int(self.terra_tx_rate * 3 / 2) * self.terra_estimate_size
                 )
                 estimate_gas_asset = int(estimate_gas_asset / 100) * 100
+                gas = Coin(gas.asset, estimate_gas_asset)
+                outbound_asset_amt -= int(estimate_gas_asset)
+                pool.asset_balance += dynamic_fee
+                asset_amt = outbound_asset_amt
+            elif pool.asset.is_xhv():
+                # the last withdraw tx , it need to spend everything
+                # left enough gas asset otherwise it will get into negative
+                emit_asset -= dynamic_fee
+                estimate_gas_asset = HavenDefaultFee // HavenDecimalDiff
                 gas = Coin(gas.asset, estimate_gas_asset)
                 outbound_asset_amt -= int(estimate_gas_asset)
                 pool.asset_balance += dynamic_fee

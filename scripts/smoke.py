@@ -15,7 +15,7 @@ from chains.litecoin import Litecoin, MockLitecoin
 from chains.bitcoin_cash import BitcoinCash, MockBitcoinCash
 from chains.dogecoin import Dogecoin, MockDogecoin
 from chains.ethereum import Ethereum, MockEthereum
-from chains.haven import Haven, MockHaven
+from chains.haven import Haven, HavenDecimalDiff, HavenDefaultFee, MockHaven
 from chains.thorchain import Thorchain, MockThorchain
 from thorchain.thorchain import ThorchainState, ThorchainClient
 from scripts.health import Health
@@ -440,6 +440,7 @@ class Smoker:
             "BCH": bch["tx_size"] * bch["tx_rate"],
             "DOGE": doge["tx_size"] * doge["tx_rate"],
             "TERRA": terra["tx_size"] * terra["tx_rate"],
+            "XHV": HavenDefaultFee // HavenDecimalDiff
         }
         self.thorchain_state.set_network_fees(fees)
         self.thorchain_state.set_btc_tx_rate(btc["tx_rate"])
