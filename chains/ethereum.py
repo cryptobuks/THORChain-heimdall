@@ -22,7 +22,7 @@ class MockEthereum:
     """
 
     default_gas = 80000
-    gas_price = 3
+    gas_price = 5
     passphrase = "the-passphrase"
     seed = "SEED"
     stake = "ADD"
