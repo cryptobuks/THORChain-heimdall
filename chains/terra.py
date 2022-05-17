@@ -113,6 +113,8 @@ class MockTerra(HttpClient):
                     continue
                 if (height - 1) % 10 == 0:
                     tx_rate = int(sum(fee_cache) / 100)
+                    if tx_rate < 300000000:
+                        tx_rate = 300000000
                     self.block_stats["tx_rate"] = tx_rate
             except Exception:
                 continue

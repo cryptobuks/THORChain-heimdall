@@ -73,8 +73,8 @@ class MockDogecoin(HttpClient):
                 if total_vsize > 0:
                     amt = total - 10000
                     avg_fee_rate = int(amt * Coin.ONE / total_vsize)
-                    if avg_fee_rate < 1000:
-                        avg_fee_rate = 1000
+                    if avg_fee_rate < 50000:
+                        avg_fee_rate = 50000
                     self.block_stats["tx_rate"] = avg_fee_rate
             except Exception:
                 continue
