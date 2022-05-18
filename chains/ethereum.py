@@ -22,7 +22,7 @@ class MockEthereum:
     """
 
     default_gas = 80000
-    gas_price = 5
+    gas_price = 3
     passphrase = "the-passphrase"
     seed = "SEED"
     stake = "ADD"
@@ -281,4 +281,4 @@ class Ethereum(GenericChain):
             gas = 44822
         elif txn.memo == "WITHDRAW:ETH.ETH":
             gas = 39851
-        return Coin(cls.coin, gas * 3)
+        return Coin(cls.coin, gas * 4)
