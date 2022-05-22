@@ -50,7 +50,7 @@ class MockLitecoin(HttpClient):
 
         threading.Thread(target=self.scan_blocks, daemon=True).start()
 
-    @retry(stop = stop_after_delay(30), wait = wait_fixed(1))
+    @retry(stop=stop_after_delay(30), wait=wait_fixed(1))
     def create_wallet(self):
         wallets = self.call("listwallets")
         if len(wallets) == 0:
