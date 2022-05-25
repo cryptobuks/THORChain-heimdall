@@ -90,6 +90,8 @@ class MockTerra(HttpClient):
         lcd_client = LCDClient(self.base_url, "localterra")
         height = int(lcd_client.tendermint.block_info()["block"]["header"]["height"])
         fee_cache = []
+        backoff = os.environ.get("BLOCK_SCANNER_BACKOFF") or "1s"
+        sleep_backoff = durationpy.from_str(backoff).total_seconds()
         while True:
             try:
                 txs = lcd_client.tx.tx_infos_by_height(height)
@@ -117,12 +119,7 @@ class MockTerra(HttpClient):
             except Exception:
                 continue
             finally:
-                default = "1.0s"
-                backoff = os.environ.get("BLOCK_SCANNER_BACKOFF", default)
-                if backoff == "" or backoff is None:
-                    backoff = default
-                backoff = durationpy.from_str(backoff).total_seconds()
-                time.sleep(backoff)
+                time.sleep(sleep_backoff)
 
     @classmethod
     def get_address_from_pubkey(cls, pubkey, prefix="terra"):

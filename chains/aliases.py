@@ -62,11 +62,11 @@ aliases_eth = {
 }
 
 aliases_xhv = {
-    "MASTER": "hvxy6ABzHQFbfQNrDj6kbDUbk79eaEpbpTLxPjZPZcLLVnBX7KGAiep4cgPMp1hUtHAWrnAFq1o26Q8qvDf6cbmc7jtFNfXHMg",
-    "CONTRIB" : "hvxy2ZrpvXDJiEwvXre4SrE3aXSWNJZ6zVpCYHZuYz6i5oRGQ4HTX4BT6gyD8qHyykb6tKBzfAmDsVPC3ncZ2bG94rsAWP3q1p",
-    "USER-1": "hvxyGJayXy1cQXfsTYGjV5Di2KeFFvKTiCDGiyVoZ4JkdEFDuuigU6GXbwTAgQd2wKi3y7LdvJ7BzdgdGZK6eGaU1JQb1WU6pY",
-    "PROVIDER-1": "hvxyCdjDj9fi8829f4RtMKHDqGVpmHWDwcSUoYZfGzbP9KHEFmHEjruEnshfoUFhbG72WAFERNNRijCdDtsC5duq6yqGc6wPG9",
-    "PROVIDER-2": "hvxyFBMCvHngYHg8y5V72BKAxtcTBDGwTAmv8XeaLLWdgdTz82pgKPKK2r9n3fgwvaeBS8PP6GLbbReCxru8F5zd82YhmGtuTW",
+    "MASTER": "hvxy6ABzHQFbfQNrDj6kbDUbk79eaEpbpTLxPjZPZcLLVnBX7KGAiep4cgPMp1hUtHAWrnAFq1o26Q8qvDf6cbmc7jtFNfXHMg",  # noqa: E501
+    "CONTRIB": "hvxy2ZrpvXDJiEwvXre4SrE3aXSWNJZ6zVpCYHZuYz6i5oRGQ4HTX4BT6gyD8qHyykb6tKBzfAmDsVPC3ncZ2bG94rsAWP3q1p",  # noqa: E501
+    "USER-1": "hvxyGJayXy1cQXfsTYGjV5Di2KeFFvKTiCDGiyVoZ4JkdEFDuuigU6GXbwTAgQd2wKi3y7LdvJ7BzdgdGZK6eGaU1JQb1WU6pY",  # noqa: E501
+    "PROVIDER-1": "hvxyCdjDj9fi8829f4RtMKHDqGVpmHWDwcSUoYZfGzbP9KHEFmHEjruEnshfoUFhbG72WAFERNNRijCdDtsC5duq6yqGc6wPG9",  # noqa: E501
+    "PROVIDER-2": "hvxyFBMCvHngYHg8y5V72BKAxtcTBDGwTAmv8XeaLLWdgdTz82pgKPKK2r9n3fgwvaeBS8PP6GLbbReCxru8F5zd82YhmGtuTW",  # noqa: E501
     "VAULT": "",
 }
 

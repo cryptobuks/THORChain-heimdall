@@ -25,7 +25,7 @@ from chains.bitcoin_cash import BitcoinCash
 from chains.ethereum import Ethereum
 from chains.binance import Binance
 from chains.thorchain import Thorchain
-from chains.haven import Haven, HavenDecimalDiff, HavenDefaultFee
+from chains.haven import Haven
 from tenacity import retry, stop_after_delay, wait_fixed
 
 RUNE = get_rune_asset()
@@ -213,11 +213,13 @@ class ThorchainState:
         self.ltc_estimate_size = 188
         self.doge_estimate_size = 269
         self.terra_estimate_size = 1
+        self.haven_estimate_size = 1
         self.btc_tx_rate = 0
         self.bch_tx_rate = 0
         self.ltc_tx_rate = 0
         self.doge_tx_rate = 0
         self.terra_tx_rate = 0
+        self.haven_tx_rate = 31401
 
     def set_btc_tx_rate(self, tx_rate):
         """
@@ -391,7 +393,7 @@ class ThorchainState:
             amount = int(self.terra_tx_rate * 3 / 2) * self.terra_estimate_size
             amount = int(amount / 100) * 100  # round TERRA to 6 digits max
         if chain == "XHV":
-            amount = HavenDefaultFee // HavenDecimalDiff
+            amount = int(self.haven_tx_rate * 3 / 2) * self.haven_estimate_size
         if chain == "BNB":
             amount = pool.get_rune_in_asset(int(rune_fee / 3))
         return Coin(gas_asset, amount)
@@ -522,12 +524,6 @@ class ThorchainState:
                                 coin.amount += gap
                             else:
                                 tx.gas = tx.max_gas
-                        
-                        if coin.asset.is_xhv() and not asset_fee == 0:
-                            tx.max_gas = [Coin(coin.asset, int(asset_fee / 2))]
-                            tx.gas = [Coin(coin.asset, int(HavenDefaultFee // HavenDecimalDiff))]
-                            # convert the haven fee back to origignal amount
-                            asset_fee *= HavenDecimalDiff
 
                         if coin.asset.is_terra() and not asset_fee == 0:
                             asset_fee = int(asset_fee / 100) * 100
@@ -921,10 +917,7 @@ class ThorchainState:
             if coin.is_rune():
                 orig_rune_amt = coin.amount
             else:
-                if tx.chain == "XHV":
-                    orig_asset_amt = coin.amount // HavenDecimalDiff
-                else:
-                    orig_asset_amt = coin.amount
+                orig_asset_amt = coin.amount
 
         # check address to provider to from memo
         if tx.chain == RUNE.get_chain():
@@ -937,7 +930,7 @@ class ThorchainState:
             if tx.chain != RUNE.get_chain():
                 rune_address = parts[2]
                 if tx.chain == "XHV":
-                    # sender address is appended to rune address in case of xhv chain, so subtract that.
+                    # sender address is appended to rune address xhv chain, subtract that
                     rune_address = parts[2][:44]
             else:
                 asset_address = parts[2]
@@ -1157,12 +1150,15 @@ class ThorchainState:
             elif pool.asset.is_xhv():
                 # the last withdraw tx , it need to spend everything
                 # left enough gas asset otherwise it will get into negative
+                # left enough gas asset otherwise it will get into negative
                 emit_asset -= dynamic_fee
-                estimate_gas_asset = HavenDefaultFee // HavenDecimalDiff
+                estimate_gas_asset = (
+                    int(self.doge_tx_rate * 3 / 2) * self.doge_estimate_size
+                )
                 gas = Coin(gas.asset, estimate_gas_asset)
                 outbound_asset_amt -= int(estimate_gas_asset)
                 pool.asset_balance += dynamic_fee
-                asset_amt = outbound_asset_amt
+                asset_amt -= dynamic_fee
         self.set_pool(pool)
 
         # get from address VAULT cross chain
@@ -1243,9 +1239,9 @@ class ThorchainState:
                 return self.refund(tx, 105, "memo can't be empty")
             return self.refund(tx, 105, f"invalid tx type: {tx.memo}")
 
-        # hardcoded dummy sender address that is being sent to thorchain from the actual haven-client in bifrost for mocknet/mainnet.
+        # hardcoded dummy sender address that is being sent to thorchain
         if tx.chain == "XHV":
-            tx.from_address = "hvxy6EXfx8fMxuiy71rNXD1DZA1he33dB2VqZKPZFqVtRvE1AUDMo865iY96CwpDMrDF5NcQ6FumH4kTmZej5cRn5scZCjb4r8"
+            tx.from_address = "hvxy6EXfx8fMxuiy71rNXD1DZA1he33dB2VqZKPZFqVtRvE1AUDMo865iY96CwpDMrDF5NcQ6FumH4kTmZej5cRn5scZCjb4r8"  # noqa: E501
         address = tx.from_address
 
         # check address to send to from memo
@@ -1300,8 +1296,6 @@ class ThorchainState:
         # check if we have enough to cover the fee
         rune_fee = self.get_rune_fee(target.get_chain())
         in_coin = in_tx.coins[0]
-        if in_coin.asset.chain == "XHV":
-            in_coin.amount = in_coin.amount // HavenDecimalDiff
         if in_coin.is_rune() and in_coin.amount <= rune_fee:
             return self.refund(tx, 108, "fail swap, not enough fee")
 
@@ -1529,7 +1523,7 @@ class ThorchainState:
         :returns: (int) liquidity fee
 
         """
-        return int(float((x**2) * Y) / float((x + X) ** 2))
+        return int(float((x ** 2) * Y) / float((x + X) ** 2))
 
     def _calc_swap_slip(self, X, x):
         """

@@ -15,7 +15,7 @@ from chains.litecoin import Litecoin, MockLitecoin
 from chains.bitcoin_cash import BitcoinCash, MockBitcoinCash
 from chains.dogecoin import Dogecoin, MockDogecoin
 from chains.ethereum import Ethereum, MockEthereum
-from chains.haven import Haven, HavenDecimalDiff, HavenDefaultFee, MockHaven
+from chains.haven import Haven, MockHaven
 from chains.thorchain import Thorchain, MockThorchain
 from thorchain.thorchain import ThorchainState, ThorchainClient
 from scripts.health import Health
@@ -323,7 +323,7 @@ class Smoker:
             if name == "MASTER":
                 continue  # don't care to compare MASTER account
             if name == "VAULT" and (chain.chain == "THOR" or chain.chain == "XHV"):
-                continue  # don't care about vault for thorchain and dont have access to  xhv vault wallet.
+                continue  # don't care about vault for thorchain and no access to xhv
             mock_coin = Coin(chain.coin, mock.get_balance(addr))
             sim_coin = Coin(chain.coin, sim_acct.get(chain.coin))
             # dont raise error on reorg balance being invalidated
@@ -442,6 +442,7 @@ class Smoker:
         ltc = self.mock_litecoin.block_stats
         doge = self.mock_dogecoin.block_stats
         terra = self.mock_terra.block_stats
+        haven = self.mock_haven.block_stats
         fees = {
             "BNB": self.mock_binance.singleton_gas,
             "ETH": self.mock_ethereum.gas_price * self.mock_ethereum.default_gas,
@@ -450,7 +451,7 @@ class Smoker:
             "BCH": bch["tx_size"] * bch["tx_rate"],
             "DOGE": doge["tx_size"] * doge["tx_rate"],
             "TERRA": terra["tx_size"] * terra["tx_rate"],
-            "XHV": HavenDefaultFee // HavenDecimalDiff
+            "XHV": haven["tx_size"] * haven["tx_rate"],
         }
         self.thorchain_state.set_network_fees(fees)
         self.thorchain_state.set_btc_tx_rate(btc["tx_rate"])
@@ -520,6 +521,11 @@ class Smoker:
                         event_chain = Asset(evt_t.get("asset")).get_chain()
                         out_chain = out.coins[0].asset.get_chain()
                         if event_chain == out_chain:
+                            # if XHV we can't calculate the gas from heimdall because
+                            # we can't specify a gas value from thornode so it's
+                            # random so we just take it from the gas event
+                            if out_chain == "XHV":
+                                out.gas[0].amount = int(evt_t.get("asset_amt"))
                             todo.append(out)
                             count += 1
                             if count >= int(evt_t.get("transaction_count")):

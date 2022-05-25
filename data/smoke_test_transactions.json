@@ -178,7 +178,7 @@
         "coins": [
             {
                 "asset": "XHV.XHV",
-                "amount": 30000000000000
+                "amount": 10000000000
             }
         ],
         "gas": null
@@ -197,136 +197,6 @@
         "gas": null
     },
     {
-        "chain": "BCH",
-        "from_address": "MASTER",
-        "to_address": "USER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "BCH.BCH",
-                "amount": 200000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "BCH",
-        "from_address": "MASTER",
-        "to_address": "PROVIDER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "BCH.BCH",
-                "amount": 200000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "BCH",
-        "from_address": "MASTER",
-        "to_address": "PROVIDER-2",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "BCH.BCH",
-                "amount": 200000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "LTC",
-        "from_address": "MASTER",
-        "to_address": "USER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "LTC.LTC",
-                "amount": 200000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "LTC",
-        "from_address": "MASTER",
-        "to_address": "PROVIDER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "LTC.LTC",
-                "amount": 200000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "LTC",
-        "from_address": "MASTER",
-        "to_address": "PROVIDER-2",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "LTC.LTC",
-                "amount": 200000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "ETH",
-        "from_address": "MASTER",
-        "to_address": "USER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "ETH.ETH",
-                "amount": 40000000000000000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "ETH",
-        "from_address": "MASTER",
-        "to_address": "PROVIDER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "ETH.ETH",
-                "amount": 40000000000000000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "ETH",
-        "from_address": "MASTER",
-        "to_address": "USER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A",
-                "amount": 400000000000000000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "ETH",
-        "from_address": "MASTER",
-        "to_address": "PROVIDER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A",
-                "amount": 400000000000000000000
-            }
-        ],
-        "gas": null
-    },
-    {
         "chain": "XHV",
         "from_address": "MASTER",
         "to_address": "USER-1",
@@ -334,7 +204,137 @@
         "coins": [
             {
                 "asset": "XHV.XHV",
-                "amount": 30000000000000
+                "amount": 10000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "BCH",
+        "from_address": "MASTER",
+        "to_address": "USER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "BCH.BCH",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "BCH",
+        "from_address": "MASTER",
+        "to_address": "PROVIDER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "BCH.BCH",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "BCH",
+        "from_address": "MASTER",
+        "to_address": "PROVIDER-2",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "BCH.BCH",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "LTC",
+        "from_address": "MASTER",
+        "to_address": "USER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "LTC.LTC",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "LTC",
+        "from_address": "MASTER",
+        "to_address": "PROVIDER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "LTC.LTC",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "LTC",
+        "from_address": "MASTER",
+        "to_address": "PROVIDER-2",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "LTC.LTC",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "ETH",
+        "from_address": "MASTER",
+        "to_address": "USER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "ETH.ETH",
+                "amount": 40000000000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "ETH",
+        "from_address": "MASTER",
+        "to_address": "PROVIDER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "ETH.ETH",
+                "amount": 40000000000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "ETH",
+        "from_address": "MASTER",
+        "to_address": "USER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A",
+                "amount": 400000000000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "ETH",
+        "from_address": "MASTER",
+        "to_address": "PROVIDER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A",
+                "amount": 400000000000000000000
             }
         ],
         "gas": null
@@ -457,19 +457,6 @@
         "gas": null
     },
     {
-        "chain": "XHV",
-        "from_address": "PROVIDER-1",
-        "to_address": "VAULT",
-        "memo": "ADD:XHV.XHV:PROVIDER-1",
-        "coins": [
-            {
-                "asset": "XHV.XHV",
-                "amount": 10000000000000
-            }
-        ],
-        "gas": null
-    },
-    {
         "chain": "THOR",
         "from_address": "PROVIDER-1",
         "to_address": "VAULT",
@@ -491,19 +478,6 @@
             {
                 "asset": "THOR.RUNE",
                 "amount": 50000000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "THOR",
-        "from_address": "PROVIDER-1",
-        "to_address": "VAULT",
-        "memo": "ADD:XHV.XHV:PROVIDER-1",
-        "coins": [
-            {
-                "asset": "THOR.RUNE",
-                "amount": 1000000000
             }
         ],
         "gas": null
@@ -561,19 +535,6 @@
         "gas": null
     },
     {
-        "chain": "XHV",
-        "from_address": "USER-1",
-        "to_address": "VAULT",
-        "memo": "SWAP:THOR.RUNE:USER-1",
-        "coins": [
-            {
-                "asset": "XHV.XHV",
-                "amount": 3000000000000
-            }
-        ],
-        "gas": null
-    },
-    {
         "chain": "THOR",
         "from_address": "PROVIDER-1",
         "to_address": "VAULT",
@@ -621,19 +582,6 @@
             {
                 "asset": "BNB.BNB",
                 "amount": 100000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "THOR",
-        "from_address": "PROVIDER-1",
-        "to_address": "VAULT",
-        "memo": "WITHDRAW:XHV.XHV:1000",
-        "coins": [
-            {
-                "asset": "THOR.RUNE",
-                "amount": 1
             }
         ],
         "gas": null
@@ -764,6 +712,32 @@
             {
                 "asset": "BCH.BCH",
                 "amount": 150000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "XHV",
+        "from_address": "PROVIDER-1",
+        "to_address": "VAULT",
+        "memo": "ADD:XHV.XHV:PROVIDER-1",
+        "coins": [
+            {
+                "asset": "XHV.XHV",
+                "amount": 5000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "THOR",
+        "from_address": "PROVIDER-1",
+        "to_address": "VAULT",
+        "memo": "ADD:XHV.XHV:PROVIDER-1",
+        "coins": [
+            {
+                "asset": "THOR.RUNE",
+                "amount": 1000000000
             }
         ],
         "gas": null
@@ -1011,6 +985,32 @@
             {
                 "asset": "THOR.RUNE",
                 "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "XHV",
+        "from_address": "USER-1",
+        "to_address": "VAULT",
+        "memo": "SWAP:THOR.RUNE:USER-1",
+        "coins": [
+            {
+                "asset": "XHV.XHV",
+                "amount": 300000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "THOR",
+        "from_address": "USER-1",
+        "to_address": "VAULT",
+        "memo": "SWAP:XHV.XHV:USER-1",
+        "coins": [
+            {
+                "asset": "THOR.RUNE",
+                "amount": 500000000
             }
         ],
         "gas": null
@@ -1348,6 +1348,19 @@
         "chain": "THOR",
         "from_address": "PROVIDER-1",
         "to_address": "VAULT",
+        "memo": "WITHDRAW:XHV.XHV:1000",
+        "coins": [
+            {
+                "asset": "THOR.RUNE",
+                "amount": 1
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "THOR",
+        "from_address": "PROVIDER-1",
+        "to_address": "VAULT",
         "memo": "WITHDRAW:TERRA.UST:1000",
         "coins": [
             {
@@ -1583,6 +1596,19 @@
         "from_address": "PROVIDER-1",
         "to_address": "VAULT",
         "memo": "WITHDRAW:TERRA.UST",
+        "coins": [
+            {
+                "asset": "THOR.RUNE",
+                "amount": 1
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "THOR",
+        "from_address": "PROVIDER-1",
+        "to_address": "VAULT",
+        "memo": "WITHDRAW:XHV.XHV",
         "coins": [
             {
                 "asset": "THOR.RUNE",

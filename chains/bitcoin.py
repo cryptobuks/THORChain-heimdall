@@ -55,6 +55,8 @@ class MockBitcoin(HttpClient):
             self.call("createwallet", "")
 
     def scan_blocks(self):
+        backoff = os.environ.get("BLOCK_SCANNER_BACKOFF") or "1s"
+        sleep_backoff = durationpy.from_str(backoff).total_seconds()
         while True:
             try:
                 result = self.get_block_stats()
@@ -69,12 +71,7 @@ class MockBitcoin(HttpClient):
             except Exception:
                 continue
             finally:
-                default = "1.0s"
-                backoff = os.environ.get("BLOCK_SCANNER_BACKOFF", default)
-                if backoff == "" or backoff is None:
-                    backoff = default
-                backoff = durationpy.from_str(backoff).total_seconds()
-                time.sleep(backoff)
+                time.sleep(sleep_backoff)
 
     @classmethod
     def get_address_from_pubkey(cls, pubkey):
