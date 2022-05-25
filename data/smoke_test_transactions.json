@@ -197,6 +197,84 @@
         "gas": null
     },
     {
+        "chain": "BCH",
+        "from_address": "MASTER",
+        "to_address": "USER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "BCH.BCH",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "BCH",
+        "from_address": "MASTER",
+        "to_address": "PROVIDER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "BCH.BCH",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "BCH",
+        "from_address": "MASTER",
+        "to_address": "PROVIDER-2",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "BCH.BCH",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "LTC",
+        "from_address": "MASTER",
+        "to_address": "USER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "LTC.LTC",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "LTC",
+        "from_address": "MASTER",
+        "to_address": "PROVIDER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "LTC.LTC",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "LTC",
+        "from_address": "MASTER",
+        "to_address": "PROVIDER-2",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "LTC.LTC",
+                "amount": 200000000
+            }
+        ],
+        "gas": null
+    },
+    {
         "chain": "XHV",
         "from_address": "MASTER",
         "to_address": "USER-1",
@@ -205,84 +283,6 @@
             {
                 "asset": "XHV.XHV",
                 "amount": 10000000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "BCH",
-        "from_address": "MASTER",
-        "to_address": "USER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "BCH.BCH",
-                "amount": 200000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "BCH",
-        "from_address": "MASTER",
-        "to_address": "PROVIDER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "BCH.BCH",
-                "amount": 200000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "BCH",
-        "from_address": "MASTER",
-        "to_address": "PROVIDER-2",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "BCH.BCH",
-                "amount": 200000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "LTC",
-        "from_address": "MASTER",
-        "to_address": "USER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "LTC.LTC",
-                "amount": 200000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "LTC",
-        "from_address": "MASTER",
-        "to_address": "PROVIDER-1",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "LTC.LTC",
-                "amount": 200000000
-            }
-        ],
-        "gas": null
-    },
-    {
-        "chain": "LTC",
-        "from_address": "MASTER",
-        "to_address": "PROVIDER-2",
-        "memo": "SEED",
-        "coins": [
-            {
-                "asset": "LTC.LTC",
-                "amount": 200000000
             }
         ],
         "gas": null
