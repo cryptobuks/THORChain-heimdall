@@ -1755,6 +1755,75 @@
         "type": "pending_liquidity",
         "attributes": [
             {
+                "pool": "XHV.XHV"
+            },
+            {
+                "type": "add"
+            },
+            {
+                "rune_address": "PROVIDER-1"
+            },
+            {
+                "rune_amount": "0"
+            },
+            {
+                "asset_amount": "5000000000"
+            },
+            {
+                "asset_address": "PROVIDER-1"
+            },
+            {
+                "XHV_txid": "TODO"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "pool",
+        "attributes": [
+            {
+                "pool": "XHV.XHV"
+            },
+            {
+                "pool_status": "Available"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "add_liquidity",
+        "attributes": [
+            {
+                "pool": "XHV.XHV"
+            },
+            {
+                "liquidity_provider_units": "1000000000"
+            },
+            {
+                "rune_address": "PROVIDER-1"
+            },
+            {
+                "rune_amount": "1000000000"
+            },
+            {
+                "asset_amount": "5000000000"
+            },
+            {
+                "asset_address": "PROVIDER-1"
+            },
+            {
+                "THOR_txid": "TODO"
+            },
+            {
+                "XHV_txid": "TODO"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "pending_liquidity",
+        "attributes": [
+            {
                 "pool": "LTC.LTC"
             },
             {
@@ -2485,6 +2554,120 @@
             },
             {
                 "pool_deduct": "0"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "fee",
+        "attributes": [
+            {
+                "tx_id": "TODO"
+            },
+            {
+                "coins": "2000000 THOR.RUNE"
+            },
+            {
+                "pool_deduct": "0"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "swap",
+        "attributes": [
+            {
+                "pool": "XHV.XHV"
+            },
+            {
+                "swap_target": "0"
+            },
+            {
+                "swap_slip": "566"
+            },
+            {
+                "liquidity_fee": "3203987"
+            },
+            {
+                "liquidity_fee_in_rune": "3203987"
+            },
+            {
+                "emit_asset": "53399786 THOR.RUNE"
+            },
+            {
+                "id": "TODO"
+            },
+            {
+                "chain": "XHV"
+            },
+            {
+                "from": "hvxy6EXfx8fMxuiy71rNXD1DZA1he33dB2VqZKPZFqVtRvE1AUDMo865iY96CwpDMrDF5NcQ6FumH4kTmZej5cRn5scZCjb4r8"
+            },
+            {
+                "to": "VAULT"
+            },
+            {
+                "coin": "300000000 XHV.XHV"
+            },
+            {
+                "memo": "SWAP:THOR.RUNE:USER-1"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "fee",
+        "attributes": [
+            {
+                "tx_id": "TODO"
+            },
+            {
+                "coins": "5670242 XHV.XHV"
+            },
+            {
+                "pool_deduct": "1997239"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "swap",
+        "attributes": [
+            {
+                "pool": "XHV.XHV"
+            },
+            {
+                "swap_target": "0"
+            },
+            {
+                "swap_slip": "3456"
+            },
+            {
+                "liquidity_fee": "633167811"
+            },
+            {
+                "liquidity_fee_in_rune": "113086186"
+            },
+            {
+                "emit_asset": "1198713571 XHV.XHV"
+            },
+            {
+                "id": "TODO"
+            },
+            {
+                "chain": "THOR"
+            },
+            {
+                "from": "USER-1"
+            },
+            {
+                "to": "VAULT"
+            },
+            {
+                "coin": "500000000 THOR.RUNE"
+            },
+            {
+                "memo": "SWAP:XHV.XHV:USER-1"
             }
         ],
         "height": null
@@ -4722,6 +4905,81 @@
         "type": "withdraw",
         "attributes": [
             {
+                "pool": "XHV.XHV"
+            },
+            {
+                "liquidity_provider_units": "100000000"
+            },
+            {
+                "basis_points": "1000"
+            },
+            {
+                "asymmetry": "0.000000000000000000"
+            },
+            {
+                "emit_asset": "410695667"
+            },
+            {
+                "emit_rune": "144460298"
+            },
+            {
+                "imp_loss_protection": "0"
+            },
+            {
+                "id": "TODO"
+            },
+            {
+                "chain": "THOR"
+            },
+            {
+                "from": "PROVIDER-1"
+            },
+            {
+                "to": "VAULT"
+            },
+            {
+                "coin": "1 THOR.RUNE"
+            },
+            {
+                "memo": "WITHDRAW:XHV.XHV:1000"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "fee",
+        "attributes": [
+            {
+                "tx_id": "TODO"
+            },
+            {
+                "coins": "5685931 XHV.XHV"
+            },
+            {
+                "pool_deduct": "1996928"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "fee",
+        "attributes": [
+            {
+                "tx_id": "TODO"
+            },
+            {
+                "coins": "2000000 THOR.RUNE"
+            },
+            {
+                "pool_deduct": "0"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "withdraw",
+        "attributes": [
+            {
                 "pool": "TERRA.UST"
             },
             {
@@ -6343,6 +6601,78 @@
             },
             {
                 "transaction_count": "1"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "pool",
+        "attributes": [
+            {
+                "pool": "XHV.XHV"
+            },
+            {
+                "pool_status": "Staged"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "withdraw",
+        "attributes": [
+            {
+                "pool": "XHV.XHV"
+            },
+            {
+                "liquidity_provider_units": "900000000"
+            },
+            {
+                "basis_points": "10000"
+            },
+            {
+                "asymmetry": "0.000000000000000000"
+            },
+            {
+                "emit_asset": "3699095216"
+            },
+            {
+                "emit_rune": "1298145749"
+            },
+            {
+                "imp_loss_protection": "0"
+            },
+            {
+                "id": "TODO"
+            },
+            {
+                "chain": "THOR"
+            },
+            {
+                "from": "PROVIDER-1"
+            },
+            {
+                "to": "VAULT"
+            },
+            {
+                "coin": "1 THOR.RUNE"
+            },
+            {
+                "memo": "WITHDRAW:XHV.XHV"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "fee",
+        "attributes": [
+            {
+                "tx_id": "TODO"
+            },
+            {
+                "coins": "2000000 THOR.RUNE"
+            },
+            {
+                "pool_deduct": "0"
             }
         ],
         "height": null
