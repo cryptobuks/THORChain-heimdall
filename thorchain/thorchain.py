@@ -1153,7 +1153,7 @@ class ThorchainState:
                 # left enough gas asset otherwise it will get into negative
                 emit_asset -= dynamic_fee
                 estimate_gas_asset = (
-                    int(self.haven_tx_rate * 3 / 2) * self.haven_estimate_size
+                    (self.haven_tx_rate * 3 / 2) * self.haven_estimate_size
                 )
                 gas = Coin(gas.asset, estimate_gas_asset)
                 outbound_asset_amt -= int(estimate_gas_asset)
