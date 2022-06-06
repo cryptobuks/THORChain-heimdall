@@ -35,10 +35,9 @@ class MockHaven(HttpClient):
         "tx_size": 1000,
     }
 
-    def __init__(self, base_url_daemon, thor_api):
+    def __init__(self, base_url_daemon):
         super().__init__(base_url_daemon)
         self.wallet = HttpClient(self.get_wallet_url())
-        self.thorchain = HttpClient(thor_api)
         self.wait_for_node()
         self.create_wallets()
 
@@ -51,15 +50,6 @@ class MockHaven(HttpClient):
                 {"filename": key, "password": "password", "seed": self.seeds[key]},
             )
             self.wallets[result["address"]] = key
-
-    def get_vault_address(self):
-        """
-        Get haven asgard address
-        """
-        result = self.thorchain.fetch("/thorchain/inbound_addresses")
-        for chain in result:
-            if chain["chain"] == "XHV":
-                return chain["address"]
 
     def get_wallet_url(self):
         url = self.base_url.replace("17750", "5051")

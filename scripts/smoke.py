@@ -222,9 +222,14 @@ class Smoker:
         self.mock_ethereum.set_vault_address(ethereum_address)
 
         # setup haven
-        self.mock_haven = MockHaven(xhv, thor)
-        haven_address = self.mock_haven.get_vault_address()
-        self.mock_haven.set_vault_address(haven_address)
+        self.mock_haven = MockHaven(xhv)
+        # Get haven asgard address
+        result = self.thorchain_client.fetch("/thorchain/inbound_addresses")
+        havenVaultAddr = ""
+        for chain in result:
+            if chain["chain"] == "XHV":
+                havenVaultAddr = chain["address"]
+        self.mock_haven.set_vault_address(havenVaultAddr)
 
         # setup binance
         self.mock_binance = MockBinance(bnb)
