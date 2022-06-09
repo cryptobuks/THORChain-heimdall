@@ -83,7 +83,7 @@ class MockHaven(HttpClient):
         """
         aliases_xhv["VAULT"] = addr
 
-    @retry(stop=stop_after_delay(180), wait=wait_fixed(1))
+    @retry(stop=stop_after_delay(360), wait=wait_fixed(1))
     def wait_for_node(self):
         """
         Haven regtest node is started with directly mining 100 blocks
