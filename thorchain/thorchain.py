@@ -23,6 +23,7 @@ from chains.dogecoin import Dogecoin
 from chains.gaia import Gaia
 from chains.bitcoin_cash import BitcoinCash
 from chains.ethereum import Ethereum
+from chains.avalanche import Avalanche
 from chains.binance import Binance
 from chains.thorchain import Thorchain
 from tenacity import retry, stop_after_delay, wait_fixed
@@ -363,6 +364,8 @@ class ThorchainState:
             return Gaia.coin
         if chain == "ETH":
             return Ethereum.coin
+        if chain == "AVAX":
+            return Avalanche.coin
         return None
 
     def get_gas(self, chain, tx):
@@ -539,6 +542,17 @@ class ThorchainState:
                             elif coin.asset.is_erc():
                                 fee_in_gas_asset = self.get_asset_fee(tx.chain)
                                 gas_asset = self.get_gas_asset("ETH")
+                                tx.max_gas = [
+                                    Coin(gas_asset, int(fee_in_gas_asset / 2))
+                                ]
+
+                        if coin.asset.get_chain() == "AVAX" and not asset_fee == 0:
+                            if coin.asset.is_avax():
+                                tx.max_gas = [Coin(coin.asset, int(asset_fee / 2))]
+
+                            elif coin.asset.is_erc():
+                                fee_in_gas_asset = self.get_asset_fee(tx.chain)
+                                gas_asset = self.get_gas_asset("AVAX")
                                 tx.max_gas = [
                                     Coin(gas_asset, int(fee_in_gas_asset / 2))
                                 ]
@@ -1063,6 +1077,11 @@ class ThorchainState:
                 pool.asset_balance += gas_amt
                 asset_amt -= gas_amt
             elif pool.asset.is_eth():
+                gas = self.get_gas(asset.get_chain(), tx)
+                asset_amt -= dynamic_fee
+                outbound_asset_amt -= dynamic_fee
+                pool.asset_balance += gas.amount
+            elif pool.asset.is_avax():
                 gas = self.get_gas(asset.get_chain(), tx)
                 asset_amt -= dynamic_fee
                 outbound_asset_amt -= dynamic_fee

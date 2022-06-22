@@ -68,6 +68,11 @@ def main():
         help="Localnet ethereum server",
     )
     parser.add_argument(
+        "--avalanche",
+        default="http://localhost:9650/ext/bc/C/rpc",
+        help="Localnet avalanche server",
+    )
+    parser.add_argument(
         "--thorchain", default="http://localhost:1317", help="Thorchain API url"
     )
     parser.add_argument(
@@ -122,6 +127,7 @@ def main():
         args.litecoin,
         args.dogecoin,
         args.ethereum,
+        args.avalanche,
         args.thorchain,
         health,
         txns,
@@ -151,6 +157,7 @@ class Smoker:
         ltc,
         doge,
         eth,
+        avax_url,
         thor,
         health,
         txns,

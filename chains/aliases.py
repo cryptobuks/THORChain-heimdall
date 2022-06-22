@@ -61,6 +61,15 @@ aliases_eth = {
     "VAULT": "",
 }
 
+aliases_avax = {
+    "MASTER": "",
+    "CONTRIB": "",
+    "USER-1": "",
+    "PROVIDER-1": "",
+    "PROVIDER-2": "",
+    "VAULT": "",
+}
+
 aliases_thor = {
     "MASTER": "tthor1nrsk6f4kalwwrqqyrfmxzl96hyjhe96t4gmvp2",
     "CONTRIB": "tthor1m8prd4pvqe5p3cu7tu82pn50a5f9xzxzetc35t",
@@ -109,6 +118,8 @@ def get_alias_address(chain, alias):
         return aliases_doge[alias]
     if chain == "ETH":
         return aliases_eth[alias]
+    if chain == "AVAX":
+        return aliases_avax[alias]
     if chain == "THOR":
         return aliases_thor[alias]
     raise Exception(f"Address for alias not found, chain not supported ({chain})")
@@ -129,6 +140,8 @@ def get_alias(chain, addr):
         aliases = aliases_doge
     if chain == "ETH":
         aliases = aliases_eth
+    if chain == "AVAX":
+        aliases = aliases_avax
     if chain == "THOR":
         aliases = aliases_thor
     for name, alias_addr in aliases.items():
