@@ -20,6 +20,7 @@ spec:
           - --thorchain=http://thor-api:1317
           - --binance=http://binance-daemon:26657
           - --ethereum=http://ethereum-daemon:8545
+          - --avalanche=http://avalance-daemon:9650/ext/bc/C/rpc
           - --bitcoin=http://thorchain:password@bitcoin-daemon:18443
           - --thorchain-websocket=ws://thor-daemon:26657/websocket
           - --midgard=http://midgard:8080

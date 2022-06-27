@@ -15,6 +15,7 @@ from chains.litecoin import Litecoin, MockLitecoin
 from chains.bitcoin_cash import BitcoinCash, MockBitcoinCash
 from chains.dogecoin import Dogecoin, MockDogecoin
 from chains.ethereum import Ethereum, MockEthereum
+from chains.avalanche import Avalanche, MockAvalanche
 from chains.thorchain import Thorchain, MockThorchain
 from thorchain.thorchain import ThorchainState, ThorchainClient
 from scripts.health import Health
@@ -175,6 +176,7 @@ class Smoker:
         self.litecoin = Litecoin()
         self.dogecoin = Dogecoin()
         self.ethereum = Ethereum()
+        self.avalanche = Avalanche()
         self.thorchain = Thorchain()
         self.thorchain_state = ThorchainState()
 
@@ -218,6 +220,11 @@ class Smoker:
         self.mock_ethereum = MockEthereum(eth)
         ethereum_address = MockEthereum.get_address_from_pubkey(raw_pubkey)
         self.mock_ethereum.set_vault_address(ethereum_address)
+
+        # setup avalanche
+        self.mock_avalanche = MockAvalanche(avax_url)
+        avax_address = MockAvalanche.get_address_from_pubkey(raw_pubkey)
+        self.mock_avalanche.set_vault_address(avax_address)
 
         # setup binance
         self.mock_binance = MockBinance(bnb)
@@ -350,6 +357,28 @@ class Smoker:
                 if sim_coin != mock_coin:
                     self.error(f"Bad ETH balance: {name} {mock_coin} != {sim_coin}")
 
+    def check_avalanche(self):
+        # compare simulation avalanche vs mock avalanche
+        for addr, sim_acct in self.avalanche.accounts.items():
+            name = get_alias(self.avalanche.chain, addr)
+            if name == "MASTER":
+                continue  # don't care to compare MASTER account
+            for sim_coin in sim_acct.balances:
+                if not sim_coin.asset.is_avax():
+                    continue
+                mock_coin = Coin(
+                    "AVAX." + sim_coin.asset.get_symbol(),
+                    self.mock_avalanche.get_balance(
+                        addr, sim_coin.asset.get_symbol().split("-")[0]
+                    ),
+                )
+                # # dont raise error on reorg balance being invalidated
+                # # sim is not smart enough to subtract funds on reorg
+                # if mock_coin.amount == 0 and self.ethereum_reorg:
+                #     return
+                if sim_coin != mock_coin:
+                    self.error(f"Bad AVAX balance: {name} {mock_coin} != {sim_coin}")
+
     def check_vaults(self, block_height):
         # check vault data
         vdata = self.thorchain_client.get_vault_data(block_height)
@@ -394,6 +423,8 @@ class Smoker:
             return self.mock_dogecoin.transfer(txn)
         if txn.chain == Ethereum.chain:
             return self.mock_ethereum.transfer(txn)
+        if txn.chain == Avalanche.chain:
+            return self.mock_avalanche.transfer(txn)
         if txn.chain == Gaia.chain:
             return self.mock_gaia.transfer(txn)
         if txn.chain == MockThorchain.chain:
@@ -418,6 +449,9 @@ class Smoker:
         if txn.chain == Ethereum.chain:
             tx_copy = deepcopy(txn)
             return self.ethereum.transfer(tx_copy)
+        if txn.chain == Avalanche.chain:
+            tx_copy = deepcopy(txn)
+            return self.avalanche.transfer(tx_copy)
         if txn.chain == Thorchain.chain:
             return self.thorchain.transfer(txn)
 

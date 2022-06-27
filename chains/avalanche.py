@@ -12,12 +12,12 @@ from chains.chain import GenericChain
 RUNE = get_rune_asset()
 
 def calculate_gas(msg):
-    return MockEthereum.default_gas + Ethereum.gas_per_byte * len(msg)
+    return MockAvalanche.default_gas + Avalanche.gas_per_byte * len(msg)
 
 
-class MockEthereum:
+class MockAvalanche:
     """
-    An client implementation for a localnet/rinkebye/ropston Avalanche server
+    An client implementation for a local Avalanche server
     """
 
     default_gas = 80000
@@ -27,11 +27,11 @@ class MockEthereum:
     stake = "ADD"
     tokens = dict()
     zero_address = "0x0000000000000000000000000000000000000000"
-    vault_contract_addr = "0xE65e9d372F8cAcc7b6dfcd4af6507851Ed31bb44"
-    token_contract_addr = "0x40bcd4dB8889a8Bf0b1391d0c819dcd9627f9d0a"
+    vault_contract_addr = "0x17aB05351fC94a1a67Bf3f56DdbB941aE6c63E25"
+    token_contract_addr = "0x333c3310824b7c685133F2BeDb2CA4b8b4DF633d"
 
     private_keys = [
-        "ef235aacf90d9f4aadd8c92e4b2562e1d9eb97f0df9ba3b508258739cb013db2",
+        "56289e99c94b6912bfc12adc093c9b51124f0dc54ac7a766b2bc5ccf558d8027",
         "289c2857d4598e37fb9647507e47a309d6133539bf21a8b9cb6df88fd5232032",
         "e810f1d7d6691b4a7a73476f3543bd87d601f9a53e7faf670eac2c5b517d83bf",
         "a96e62ed3955e65be32703f12d87b6b5cf26039ecfa948dc5107a495418e5330",
@@ -139,7 +139,7 @@ class MockEthereum:
 
     def transfer(self, txn):
         """
-        Make a transaction/transfer on localnet Ethereum
+        Make a transaction/transfer on localnet Avalanche
         """
         if not isinstance(txn.coins, list):
             txn.coins = [txn.coins]
@@ -171,7 +171,7 @@ class MockEthereum:
         spent_gas = 0
         if txn.memo == self.seed:
 
-            if txn.coins[0].asset.get_symbol() == Ethereum.chain:
+            if txn.coins[0].asset.get_symbol() == Avalanche.chain:
                 tx_hash = self.vault.functions.deposit(
                     Web3.toChecksumAddress(txn.to_address),
                     Web3.toChecksumAddress(self.zero_address),
@@ -194,7 +194,7 @@ class MockEthereum:
         else:
             memo = txn.memo
 
-            if txn.coins[0].asset.get_symbol().split("-")[0] == Ethereum.chain:
+            if txn.coins[0].asset.get_symbol().split("-")[0] == Avalanche.chain:
                 tx_hash = self.vault.functions.deposit(
                     Web3.toChecksumAddress(txn.to_address),
                     Web3.toChecksumAddress(self.zero_address),
@@ -249,22 +249,22 @@ class Avalanche(GenericChain):
         Calculate gas according to RUNE thorchain fee
         """
         gas = 39540
-        if txn.gas is not None and txn.gas[0].asset.is_eth():
+        if txn.gas is not None and txn.gas[0].asset.is_avax():
             gas = txn.gas[0].amount
         if txn.memo == "WITHDRAW:AVAX.AVAX:1000":
             gas = 39839
         elif txn.memo.startswith("SWAP:AVAX.AVAX:"):
             gas = 39827
         elif txn.memo.startswith(
-            "SWAP:ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A"
+            "SWAP:AVAX.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A"
         ):
             gas = 53215
         elif (
             txn.memo
-            == "WITHDRAW:ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A:1000"
+            == "WITHDRAW:AVAX.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A:1000"
         ):
             gas = 53227
-        elif txn.memo == "WITHDRAW:ETH.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A":
+        elif txn.memo == "WITHDRAW:AVAX.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A":
             gas = 44822
         elif txn.memo == "WITHDRAW:AVAX.AVAX":
             gas = 39851
