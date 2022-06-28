@@ -290,12 +290,64 @@
     {
         "chain": "AVAX",
         "from_address": "MASTER",
+        "to_address": "USER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "AVAX.AVAX",
+                "amount": 40000000000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "AVAX",
+        "from_address": "MASTER",
         "to_address": "PROVIDER-1",
         "memo": "SEED",
         "coins": [
             {
                 "asset": "AVAX.AVAX",
-                "amount": 400000000000000000000
+                "amount": 40000000000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "AVAX",
+        "from_address": "MASTER",
+        "to_address": "TKN-MASTER",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "AVAX.AVAX",
+                "amount": 10000000000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "AVAX",
+        "from_address": "TKN-MASTER",
+        "to_address": "USER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D",
+                "amount": 10000000000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "AVAX",
+        "from_address": "TKN-MASTER",
+        "to_address": "PROVIDER-1",
+        "memo": "SEED",
+        "coins": [
+            {
+                "asset": "AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D",
+                "amount": 10000000000000000000
             }
         ],
         "gas": null
@@ -387,6 +439,58 @@
             {
                 "asset": "GAIA.ATOM",
                 "amount": 150000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "THOR",
+        "from_address": "PROVIDER-1",
+        "to_address": "VAULT",
+        "memo": "ADD:AVAX.AVAX:PROVIDER-1",
+        "coins": [
+            {
+                "asset": "THOR.RUNE",
+                "amount": 1000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "AVAX",
+        "from_address": "PROVIDER-1",
+        "to_address": "VAULT",
+        "memo": "ADD:AVAX.AVAX:PROVIDER-1",
+        "coins": [
+            {
+                "asset": "AVAX.AVAX",
+                "amount": 2000000000000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "THOR",
+        "from_address": "PROVIDER-1",
+        "to_address": "VAULT",
+        "memo": "ADD:AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D:PROVIDER-1",
+        "coins": [
+            {
+                "asset": "THOR.RUNE",
+                "amount": 50000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "AVAX",
+        "from_address": "PROVIDER-1",
+        "to_address": "VAULT",
+        "memo": "ADD:AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D:PROVIDER-1",
+        "coins": [
+            {
+                "asset": "AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D",
+                "amount": 1000000000000000000
             }
         ],
         "gas": null

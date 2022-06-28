@@ -297,6 +297,180 @@
         "height": null
     },
     {
+        "type": "pending_liquidity",
+        "attributes": [
+            {
+                "pool": "AVAX.AVAX"
+            },
+            {
+                "type": "add"
+            },
+            {
+                "rune_address": "PROVIDER-1"
+            },
+            {
+                "rune_amount": "1000000000"
+            },
+            {
+                "asset_amount": "0"
+            },
+            {
+                "asset_address": "PROVIDER-1"
+            },
+            {
+                "THOR_txid": "TODO"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "rewards",
+        "attributes": [
+            {
+                "bond_reward": "0"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "pool",
+        "attributes": [
+            {
+                "pool": "AVAX.AVAX"
+            },
+            {
+                "pool_status": "Available"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "add_liquidity",
+        "attributes": [
+            {
+                "pool": "AVAX.AVAX"
+            },
+            {
+                "liquidity_provider_units": "1000000000"
+            },
+            {
+                "rune_address": "PROVIDER-1"
+            },
+            {
+                "rune_amount": "1000000000"
+            },
+            {
+                "asset_amount": "2000000000000000000"
+            },
+            {
+                "asset_address": "PROVIDER-1"
+            },
+            {
+                "AVAX_txid": "TODO"
+            },
+            {
+                "THOR_txid": "TODO"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "rewards",
+        "attributes": [
+            {
+                "bond_reward": "0"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "pending_liquidity",
+        "attributes": [
+            {
+                "pool": "AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D"
+            },
+            {
+                "type": "add"
+            },
+            {
+                "rune_address": "PROVIDER-1"
+            },
+            {
+                "rune_amount": "50000000000"
+            },
+            {
+                "asset_amount": "0"
+            },
+            {
+                "asset_address": "PROVIDER-1"
+            },
+            {
+                "THOR_txid": "TODO"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "rewards",
+        "attributes": [
+            {
+                "bond_reward": "0"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "pool",
+        "attributes": [
+            {
+                "pool": "AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D"
+            },
+            {
+                "pool_status": "Available"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "add_liquidity",
+        "attributes": [
+            {
+                "pool": "AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D"
+            },
+            {
+                "liquidity_provider_units": "50000000000"
+            },
+            {
+                "rune_address": "PROVIDER-1"
+            },
+            {
+                "rune_amount": "50000000000"
+            },
+            {
+                "asset_amount": "1000000000000000000"
+            },
+            {
+                "asset_address": "PROVIDER-1"
+            },
+            {
+                "AVAX_txid": "TODO"
+            },
+            {
+                "THOR_txid": "TODO"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "rewards",
+        "attributes": [
+            {
+                "bond_reward": "0"
+            }
+        ],
+        "height": null
+    },
+    {
         "type": "refund",
         "attributes": [
             {
@@ -345,7 +519,7 @@
         "type": "rewards",
         "attributes": [
             {
-                "bond_reward": "0"
+                "bond_reward": "1"
             }
         ],
         "height": null

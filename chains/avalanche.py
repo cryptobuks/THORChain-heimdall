@@ -21,6 +21,7 @@ class MockAvalanche:
     """
 
     default_gas = 80000
+    gas_per_byte = 68
     gas_price = 2
     passphrase = "the-passphrase"
     seed = "SEED"
@@ -36,6 +37,7 @@ class MockAvalanche:
         "e810f1d7d6691b4a7a73476f3543bd87d601f9a53e7faf670eac2c5b517d83bf",
         "a96e62ed3955e65be32703f12d87b6b5cf26039ecfa948dc5107a495418e5330",
         "9294f4d108465fd293f7fe299e6923ef71a77f2cb1eb6d4394839c64ec25d5c0",
+        "ef235aacf90d9f4aadd8c92e4b2562e1d9eb97f0df9ba3b508258739cb013db2"
     ]
 
     def __init__(self, base_url):
@@ -60,6 +62,27 @@ class MockAvalanche:
         token = self.get_token()
         symbol = token.functions.symbol().call()
         self.tokens[symbol] = token
+        self.broadcast_fee_txs()
+
+    def broadcast_fee_txs(self):
+        """
+        Generate 2 txs to build cache for bifrost to estimate fees
+        """
+        sequence = self.web3.eth.getTransactionCount(Web3.toChecksumAddress(self.accounts[1]))
+        for x in range(2):
+            sequence += 1
+            tx = {
+                "from": Web3.toChecksumAddress(get_alias_address(Avalanche.chain, "CONTRIB")),
+                "to": Web3.toChecksumAddress(get_alias_address(Avalanche.chain, "TKN-MASTER")),
+                "value": 10000000000000000,
+                "gas": self.calculate_gas(""),
+            }
+            # wait for the transaction to be mined
+            tx_hash = self.web3.geth.personal.sendTransaction(tx, self.passphrase)
+            self.web3.eth.waitForTransactionReceipt(tx_hash)
+            
+    def calculate_gas(self, msg):
+        return self.default_gas + self.gas_per_byte * len(msg)
 
     @classmethod
     def get_address_from_pubkey(cls, pubkey):
@@ -189,7 +212,9 @@ class MockAvalanche:
                     .functions.transfer(
                         Web3.toChecksumAddress(txn.to_address), txn.coins[0].amount
                     )
-                    .transact()
+                    .transact({
+                        "gas": calculate_gas(txn.memo)
+                    })
                 )
         else:
             memo = txn.memo
@@ -219,7 +244,9 @@ class MockAvalanche:
                     token_address,
                     txn.coins[0].amount,
                     memo.encode("utf-8"),
-                ).transact()
+                ).transact({
+                    "gas": calculate_gas(txn.memo)
+                })
 
         receipt = self.web3.eth.waitForTransactionReceipt(tx_hash)
         txn.id = receipt.transactionHash.hex()[2:].upper()
@@ -256,15 +283,15 @@ class Avalanche(GenericChain):
         elif txn.memo.startswith("SWAP:AVAX.AVAX:"):
             gas = 39827
         elif txn.memo.startswith(
-            "SWAP:AVAX.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A"
+            "SWAP:AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D"
         ):
             gas = 53215
         elif (
             txn.memo
-            == "WITHDRAW:AVAX.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A:1000"
+            == "WITHDRAW:AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D:1000"
         ):
             gas = 53227
-        elif txn.memo == "WITHDRAW:AVAX.TKN-0X40BCD4DB8889A8BF0B1391D0C819DCD9627F9D0A":
+        elif txn.memo == "WITHDRAW:AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D":
             gas = 44822
         elif txn.memo == "WITHDRAW:AVAX.AVAX":
             gas = 39851

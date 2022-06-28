@@ -363,6 +363,8 @@ class Smoker:
             name = get_alias(self.avalanche.chain, addr)
             if name == "MASTER":
                 continue  # don't care to compare MASTER account
+            if name == "TKN-MASTER":
+                continue  # don't care to compare TKN-MASTER account
             for sim_coin in sim_acct.balances:
                 if not sim_coin.asset.is_avax():
                     continue
@@ -680,6 +682,7 @@ class Smoker:
                 self.bitcoin_cash, self.mock_bitcoin_cash, self.bitcoin_reorg
             )
             self.check_ethereum()
+            self.check_avalanche()
 
             if RUNE.get_chain() == "THOR":
                 self.check_chain(self.thorchain, self.mock_thorchain, None)
