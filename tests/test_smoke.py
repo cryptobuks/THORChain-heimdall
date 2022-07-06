@@ -13,6 +13,7 @@ from chains.dogecoin import Dogecoin
 from chains.gaia import Gaia
 from chains.bitcoin_cash import BitcoinCash
 from chains.ethereum import Ethereum
+from chains.avalanche import Avalanche
 from thorchain.thorchain import ThorchainState, Event
 from utils.breakpoint import Breakpoint
 from utils.common import Transaction, get_rune_asset, DEFAULT_RUNE_ASSET
@@ -73,6 +74,7 @@ class TestSmoke(unittest.TestCase):
         gaia = Gaia()  # init local gaia chain
         bch = BitcoinCash()  # init local bitcoin cash chain
         eth = Ethereum()  # init local ethereum chain
+        avax = Avalanche() # init local avalanche chain
         thorchain = ThorchainState()  # init local thorchain
         thorchain.network_fees = {  # init fixed network fees
             "BNB": 37500,
@@ -82,6 +84,7 @@ class TestSmoke(unittest.TestCase):
             "DOGE": 10000,
             "GAIA": 20000,
             "ETH": 65000,
+            "AVAX": 65000,
         }
 
         file = "data/smoke_test_transactions.json"
@@ -113,6 +116,13 @@ class TestSmoke(unittest.TestCase):
                     txn.coins[idx].amount = c.amount / 1e10
                 for idx, c in enumerate(txn.gas):
                     txn.gas[idx].amount = c.amount / 1e10
+            if txn.chain == Avalanche.chain:
+                avax.transfer(txn)  # send transfer on avalanche chain
+                # convert the coin amount to thorchain amount which is 1e8
+                for idx, c in enumerate(txn.coins):
+                    txn.coins[idx].amount = c.amount / 1e10
+                for idx, c in enumerate(txn.gas):
+                    txn.gas[idx].amount = c.amount / 1e10
 
             if txn.memo == "SEED":
                 continue
@@ -139,7 +149,14 @@ class TestSmoke(unittest.TestCase):
                         temp_txn.gas[idx].amount = c.amount * 1e10
                     temp_txn.fee.amount = temp_txn.fee.amount * 1e10
                     eth.transfer(temp_txn)  # send outbound txns back to Ethereum
-
+                if txn.chain == Avalanche.chain:
+                    temp_txn = deepcopy(txn)
+                    for idx, c in enumerate(temp_txn.coins):
+                        temp_txn.coins[idx].amount = c.amount * 1e10
+                    for idx, c in enumerate(temp_txn.gas):
+                        temp_txn.gas[idx].amount = c.amount * 1e10
+                    temp_txn.fee.amount = temp_txn.fee.amount * 1e10
+                    avax.transfer(temp_txn)  # send outbound txns back to Avalanche
             thorchain.handle_rewards()
 
             bnb_out = []
@@ -170,6 +187,10 @@ class TestSmoke(unittest.TestCase):
             for out in outbounds:
                 if out.coins[0].asset.get_chain() == "ETH":
                     eth_out.append(out)
+            avax_out = []
+            for out in outbounds:
+                if out.coins[0].asset.get_chain() == "AVAX":
+                    avax_out.append(out)                    
             thorchain.handle_gas(bnb_out)  # subtract gas from pool(s)
             thorchain.handle_gas(btc_out)  # subtract gas from pool(s)
             thorchain.handle_gas(ltc_out)  # subtract gas from pool(s)
@@ -177,6 +198,7 @@ class TestSmoke(unittest.TestCase):
             thorchain.handle_gas(gaia_out)  # subtract gas from pool(s)
             thorchain.handle_gas(bch_out)  # subtract gas from pool(s)
             thorchain.handle_gas(eth_out)  # subtract gas from pool(s)
+            thorchain.handle_gas(avax_out)  # subtract gas from pool(s)
 
             # generated a snapshop picture of thorchain and bnb
             snap = Breakpoint(thorchain, bnb).snapshot(i, len(outbounds))

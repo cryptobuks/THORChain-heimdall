@@ -334,7 +334,7 @@
         "coins": [
             {
                 "asset": "AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D",
-                "amount": 10000000000000000000
+                "amount": 1000000000000000000000
             }
         ],
         "gas": null
@@ -347,7 +347,7 @@
         "coins": [
             {
                 "asset": "AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D",
-                "amount": 10000000000000000000
+                "amount": 1000000000000000000000
             }
         ],
         "gas": null
@@ -451,7 +451,7 @@
         "coins": [
             {
                 "asset": "THOR.RUNE",
-                "amount": 1000000000
+                "amount": 100000000000
             }
         ],
         "gas": null
@@ -464,7 +464,7 @@
         "coins": [
             {
                 "asset": "AVAX.AVAX",
-                "amount": 2000000000000000000
+                "amount": 20000000000000000000
             }
         ],
         "gas": null
@@ -1089,6 +1089,58 @@
             {
                 "asset": "GAIA.ATOM",
                 "amount": 10000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "THOR",
+        "from_address": "USER-1",
+        "to_address": "VAULT",
+        "memo": "SWAP:AVAX.AVAX:USER-1",
+        "coins": [
+            {
+                "asset": "THOR.RUNE",
+                "amount": 5000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "AVAX",
+        "from_address": "USER-1",
+        "to_address": "VAULT",
+        "memo": "SWAP:THOR.RUNE:USER-1",
+        "coins": [
+            {
+                "asset": "AVAX.AVAX",
+                "amount": 1500000000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "THOR",
+        "from_address": "USER-1",
+        "to_address": "VAULT",
+        "memo": "SWAP:AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D:USER-1",
+        "coins": [
+            {
+                "asset": "THOR.RUNE",
+                "amount": 500000000
+            }
+        ],
+        "gas": null
+    },
+    {
+        "chain": "AVAX",
+        "from_address": "USER-1",
+        "to_address": "VAULT",
+        "memo": "SWAP:THOR.RUNE:USER-1",
+        "coins": [
+            {
+                "asset": "AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D",
+                "amount": 1500000000
             }
         ],
         "gas": null

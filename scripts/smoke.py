@@ -470,6 +470,7 @@ class Smoker:
         fees = {
             "BNB": self.mock_binance.singleton_gas,
             "ETH": self.mock_ethereum.gas_price * self.mock_ethereum.default_gas,
+            "AVAX": self.mock_avalanche.gas_price * self.mock_avalanche.default_gas,
             "BTC": btc["tx_size"] * btc["tx_rate"],
             "LTC": ltc["tx_size"] * ltc["tx_rate"],
             "BCH": bch["tx_size"] * bch["tx_rate"],
@@ -486,7 +487,7 @@ class Smoker:
     def sim_trigger_tx(self, txn):
         # process transaction in thorchain
         self.set_network_fees()
-        if txn.chain == Ethereum.chain:
+        if txn.chain == Ethereum.chain or txn.chain == Avalanche.chain:
             for idx, coin in enumerate(txn.coins):
                 txn.coins[idx].amount = int(coin.amount / 1e10)
             for idx, c in enumerate(txn.gas):
@@ -496,7 +497,7 @@ class Smoker:
         for outbound in outbounds:
             out = deepcopy(outbound)
             # update simulator state with outbound txs
-            if out.chain == Ethereum.chain:
+            if out.chain == Ethereum.chain or txn.chain == Avalanche.chain:
                 for idx, coin in enumerate(out.coins):
                     out.coins[idx].amount = int(coin.amount * 1e10)
                 for idx, c in enumerate(out.gas):

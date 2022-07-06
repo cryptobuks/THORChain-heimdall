@@ -185,7 +185,7 @@ class Asset(str, Jsonable):
         """
         Is this asset erc20?
         """
-        return self.get_chain() == "ETH" and not self.get_symbol().startswith("ETH")
+        return (self.get_chain() == "ETH" and not self.get_symbol().startswith("ETH")) or (self.get_chain() == "AVAX" and not self.get_symbol().startswith("AVAX"))
 
     def is_rune(self):
         """

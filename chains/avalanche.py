@@ -11,6 +11,7 @@ from chains.chain import GenericChain
 
 RUNE = get_rune_asset()
 
+
 def calculate_gas(msg):
     return MockAvalanche.default_gas + Avalanche.gas_per_byte * len(msg)
 
@@ -37,7 +38,7 @@ class MockAvalanche:
         "e810f1d7d6691b4a7a73476f3543bd87d601f9a53e7faf670eac2c5b517d83bf",
         "a96e62ed3955e65be32703f12d87b6b5cf26039ecfa948dc5107a495418e5330",
         "9294f4d108465fd293f7fe299e6923ef71a77f2cb1eb6d4394839c64ec25d5c0",
-        "ef235aacf90d9f4aadd8c92e4b2562e1d9eb97f0df9ba3b508258739cb013db2"
+        "ef235aacf90d9f4aadd8c92e4b2562e1d9eb97f0df9ba3b508258739cb013db2",
     ]
 
     def __init__(self, base_url):
@@ -62,25 +63,31 @@ class MockAvalanche:
         token = self.get_token()
         symbol = token.functions.symbol().call()
         self.tokens[symbol] = token
-        self.broadcast_fee_txs()
+        # self.broadcast_fee_txs()
 
-    def broadcast_fee_txs(self):
-        """
-        Generate 2 txs to build cache for bifrost to estimate fees
-        """
-        sequence = self.web3.eth.getTransactionCount(Web3.toChecksumAddress(self.accounts[1]))
-        for x in range(2):
-            sequence += 1
-            tx = {
-                "from": Web3.toChecksumAddress(get_alias_address(Avalanche.chain, "CONTRIB")),
-                "to": Web3.toChecksumAddress(get_alias_address(Avalanche.chain, "TKN-MASTER")),
-                "value": 10000000000000000,
-                "gas": self.calculate_gas(""),
-            }
-            # wait for the transaction to be mined
-            tx_hash = self.web3.geth.personal.sendTransaction(tx, self.passphrase)
-            self.web3.eth.waitForTransactionReceipt(tx_hash)
-            
+    # def broadcast_fee_txs(self):
+    #     """
+    #     Generate 2 txs to build cache for bifrost to estimate fees
+    #     """
+    #     sequence = self.web3.eth.getTransactionCount(
+    #         Web3.toChecksumAddress(self.accounts[1])
+    #     )
+    #     for x in range(2):
+    #         sequence += 1
+    #         tx = {
+    #             "from": Web3.toChecksumAddress(
+    #                 get_alias_address(Avalanche.chain, "MASTER")
+    #             ),
+    #             "to": Web3.toChecksumAddress(
+    #                 get_alias_address(Avalanche.chain, "TKN-MASTER")
+    #             ),
+    #             "value": 10000000000000000,
+    #             "gas": self.calculate_gas(""),
+    #         }
+    #         # wait for the transaction to be mined
+    #         tx_hash = self.web3.geth.personal.sendTransaction(tx, self.passphrase)
+    #         self.web3.eth.waitForTransactionReceipt(tx_hash)
+
     def calculate_gas(self, msg):
         return self.default_gas + self.gas_per_byte * len(msg)
 
@@ -134,6 +141,7 @@ class MockAvalanche:
             "avg_tx_size": 1,
             "avg_fee_rate": 1,
         }
+
     def get_balance(self, address, symbol):
         """
         Get AVAX or token balance for an address
@@ -212,9 +220,7 @@ class MockAvalanche:
                     .functions.transfer(
                         Web3.toChecksumAddress(txn.to_address), txn.coins[0].amount
                     )
-                    .transact({
-                        "gas": calculate_gas(txn.memo)
-                    })
+                    .transact()
                 )
         else:
             memo = txn.memo
@@ -224,8 +230,10 @@ class MockAvalanche:
                     Web3.toChecksumAddress(txn.to_address),
                     Web3.toChecksumAddress(self.zero_address),
                     0,
-                    txn.memo,
-                ).transact({"value": txn.coins[0].amount})
+                    txn.memo).transact({ "value": txn.coins[0].amount })
+
+                # receipt = self.web3.eth.waitForTransactionReceipt(tx_hash)
+                # logging.info(f"deposit AVAX receipt {receipt}")
             else:
                 # approve the tx first
                 symbol = txn.coins[0].asset.get_symbol().split("-")[0]
@@ -238,15 +246,15 @@ class MockAvalanche:
                 )
                 token_address = self.tokens[symbol].address
                 receipt = self.web3.eth.waitForTransactionReceipt(tx_hash)
+                # logging.info(f"approve receipt {receipt}")
+
                 spent_gas = receipt.gasUsed * int(receipt.effectiveGasPrice, 0)
                 tx_hash = self.vault.functions.deposit(
                     Web3.toChecksumAddress(txn.to_address),
                     token_address,
                     txn.coins[0].amount,
-                    memo.encode("utf-8"),
-                ).transact({
-                    "gas": calculate_gas(txn.memo)
-                })
+                    memo
+                ).transact()
 
         receipt = self.web3.eth.waitForTransactionReceipt(tx_hash)
         txn.id = receipt.transactionHash.hex()[2:].upper()

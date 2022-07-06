@@ -371,6 +371,8 @@ class ThorchainState:
     def get_gas(self, chain, tx):
         if chain == "ETH":
             return Ethereum._calculate_gas(None, tx)
+        if chain == "AVAX":
+            return Avalanche._calculate_gas(None, tx)
         return self.get_max_gas(chain)
 
     def get_max_gas(self, chain):

@@ -309,7 +309,7 @@
                 "rune_address": "PROVIDER-1"
             },
             {
-                "rune_amount": "1000000000"
+                "rune_amount": "100000000000"
             },
             {
                 "asset_amount": "0"
@@ -351,16 +351,16 @@
                 "pool": "AVAX.AVAX"
             },
             {
-                "liquidity_provider_units": "1000000000"
+                "liquidity_provider_units": "100000000000"
             },
             {
                 "rune_address": "PROVIDER-1"
             },
             {
-                "rune_amount": "1000000000"
+                "rune_amount": "100000000000"
             },
             {
-                "asset_amount": "2000000000000000000"
+                "asset_amount": "2000000000.0"
             },
             {
                 "asset_address": "PROVIDER-1"
@@ -447,7 +447,7 @@
                 "rune_amount": "50000000000"
             },
             {
-                "asset_amount": "1000000000000000000"
+                "asset_amount": "100000000.0"
             },
             {
                 "asset_address": "PROVIDER-1"
@@ -3238,6 +3238,186 @@
             },
             {
                 "memo": "SWAP:THOR.RUNE:USER-1"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "fee",
+        "attributes": [
+            {
+                "tx_id": "TODO"
+            },
+            {
+                "coins": "195000 AVAX.AVAX"
+            },
+            {
+                "pool_deduct": "10722747"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "swap",
+        "attributes": [
+            {
+                "pool": "AVAX.AVAX"
+            },
+            {
+                "swap_target": "0"
+            },
+            {
+                "swap_slip": "476"
+            },
+            {
+                "liquidity_fee": "4535147"
+            },
+            {
+                "liquidity_fee_in_rune": "226757350"
+            },
+            {
+                "emit_asset": "90702947 AVAX.AVAX"
+            },
+            {
+                "id": "TODO"
+            },
+            {
+                "chain": "THOR"
+            },
+            {
+                "from": "USER-1"
+            },
+            {
+                "to": "VAULT"
+            },
+            {
+                "coin": "5000000000 THOR.RUNE"
+            },
+            {
+                "memo": "SWAP:AVAX.AVAX:USER-1"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "gas",
+        "attributes": [
+            {
+                "asset": "AVAX.AVAX"
+            },
+            {
+                "asset_amt": "119481"
+            },
+            {
+                "rune_amt": "6569404"
+            },
+            {
+                "transaction_count": "1"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "fee",
+        "attributes": [
+            {
+                "tx_id": "TODO"
+            },
+            {
+                "coins": "150.0 AVAX.AVAX"
+            },
+            {
+                "pool_deduct": "8248"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "fee",
+        "attributes": [
+            {
+                "tx_id": "TODO"
+            },
+            {
+                "coins": "21025 AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D"
+            },
+            {
+                "pool_deduct": "10720463"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "swap",
+        "attributes": [
+            {
+                "pool": "AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D"
+            },
+            {
+                "swap_target": "0"
+            },
+            {
+                "swap_slip": "99"
+            },
+            {
+                "liquidity_fee": "9802"
+            },
+            {
+                "liquidity_fee_in_rune": "4901000"
+            },
+            {
+                "emit_asset": "980296 AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D"
+            },
+            {
+                "id": "TODO"
+            },
+            {
+                "chain": "THOR"
+            },
+            {
+                "from": "USER-1"
+            },
+            {
+                "to": "VAULT"
+            },
+            {
+                "coin": "500000000 THOR.RUNE"
+            },
+            {
+                "memo": "SWAP:AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D:USER-1"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "gas",
+        "attributes": [
+            {
+                "asset": "AVAX.AVAX"
+            },
+            {
+                "asset_amt": "159645"
+            },
+            {
+                "rune_amt": "8778831"
+            },
+            {
+                "transaction_count": "1"
+            }
+        ],
+        "height": null
+    },
+    {
+        "type": "fee",
+        "attributes": [
+            {
+                "tx_id": "TODO"
+            },
+            {
+                "coins": "0.15 AVAX.TKN-0X333C3310824B7C685133F2BEDB2CA4B8B4DF633D"
+            },
+            {
+                "pool_deduct": "76"
             }
         ],
         "height": null
